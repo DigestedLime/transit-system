@@ -1,9 +1,38 @@
-// These is a placeholder package and placeholder class
-// Feel free to rename or remove these when you add in your own code (just make sure to add/commit/push any changes made,
-//		and let your teammates know to pull the changes. Follow the workflow in the a2 instructions)
 
 package transitapp;
 
-public class Main {
+import java.util.HashMap;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import user.User;
+
+public class Main extends Application{
+	
+	HashMap<String, User> users;
+	
+	Boolean isLoggedIn = false;
+	
+	User currentUser;
+	Scene currentScene;
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage stage) throws Exception {
+		
+		
+		//this.currentScene = ;
+		
+		stage.setTitle("Transit Application");
+		stage.setScene(this.currentScene);
+		stage.show();
+		
+	}
+	
+	
 }
