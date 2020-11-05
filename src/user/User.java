@@ -1,5 +1,9 @@
 package user;
 
-abstract class User {
+public abstract class User {
 	
+	
+	public boolean logIn(String password){
+		return false;
+	}
 }
