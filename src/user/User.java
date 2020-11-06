@@ -11,7 +11,7 @@ public class User {
 	
 	protected String username;
 	protected String pass;
-	
+
 	public User(String name, String password) {
 		this.username = name;
 		this.pass = password;
