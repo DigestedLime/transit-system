@@ -24,9 +24,8 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		
-		
-		//this.currentScene = ;
+		MenuScreen menu = new MenuScreen();
+		this.currentScene = menu.getScreen();
 		
 		stage.setTitle("Transit Application");
 		stage.setScene(this.currentScene);
