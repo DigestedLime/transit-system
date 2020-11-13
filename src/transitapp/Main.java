@@ -22,6 +22,9 @@ public class Main extends Application{
 		return currentStage;
 	}
 	
+	public static void closeStage() {
+		currentStage.close();
+	}
 	
 	public static void main(String[] args) {
 		launch(args);

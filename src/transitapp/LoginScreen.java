@@ -14,9 +14,7 @@ public class LoginScreen extends Screen{
 	
 	@Override
 	public Scene getScreen() {
-		
-		System.out.println("bruh but in Login");
-		
+
 		GridPane grid = new GridPane();
 		
 		TextField usernameText = new TextField();
@@ -24,16 +22,19 @@ public class LoginScreen extends Screen{
 		Button loginButton = new Button("Login");
 		Button registerButton = new Button("Don't have an account? Register here.");
 		Button backButton = new Button("Go Back to Menu");
+		Button exitButton = new Button("Exit");
 		
 		grid.add(usernameText, 0, 0, 10, 40);
 		grid.add(passwordText, 0, 50, 10, 40);
 		grid.add(loginButton, 0, 150, 10, 30); 
 		grid.add(registerButton, 0, 300, 10, 40);
 		grid.add(backButton, 0, 400, 10, 40);
+		grid.add(exitButton, 0, 500);
 		
 		MenuScreen menu = new MenuScreen();
 		
 		backButton.setOnAction(e -> menu.setScreen());
+		exitButton.setOnAction(e -> Main.closeStage());
 		
 		scene = new Scene(grid, 500, 500);
 		
