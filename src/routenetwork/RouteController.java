@@ -13,6 +13,20 @@ public class RouteController {
 		this.route.add(temp);
 	}
 	
+	public boolean addToStation(String stationName, String busStation) {
+		// Precondition: <stationName> must be a station on the subway
+		// Validation will be added later (both in the GUI and here).
+		// Edit: Returns true if bus linked sucessfully to station.
+		// Returns false if station does not exist.
+		for (TrainStation temp : this.route) {
+			if (temp.getName().equals(stationName)) {
+				temp.addBusStation(new BusStation(busStation));
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public String toString() {
 		ArrayList<String> stationNames = new ArrayList<String>();
 		for (TrainStation temp : this.route) {
