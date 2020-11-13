@@ -16,7 +16,12 @@ public class Main extends Application{
 	Boolean isLoggedIn = false;
 	
 	User currentUser;
-	Scene currentScene;
+	private static Stage currentStage;
+	
+	public static Stage getStage(Stage s) {
+		return currentStage;
+	}
+	
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -24,12 +29,17 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		MenuScreen menu = new MenuScreen();
-		this.currentScene = menu.getScreen();
-		
-		stage.setTitle("Transit Application");
-		stage.setScene(this.currentScene);
-		stage.show();
+		Main.currentStage = stage;
+		Screen menu = null;
+		if (isLoggedIn) {
+			//menu = new DashboardScreen(); 
+		} else {
+			menu = new MenuScreen();
+		}
+		Scene scene = menu.getScreen();
+		Main.currentStage.setTitle("Transit Application");
+		Main.currentStage.setScene(scene);
+		Main.currentStage.show();
 		
 	}
 	
