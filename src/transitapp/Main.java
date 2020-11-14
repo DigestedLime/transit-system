@@ -1,9 +1,10 @@
-
 package transitapp;
 
 import java.util.HashMap;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -16,15 +17,7 @@ public class Main extends Application{
 	Boolean isLoggedIn = false;
 	
 	User currentUser;
-	private static Stage currentStage;
-	
-	public static Stage getStage() {
-		return currentStage;
-	}
-	
-	public static void closeStage() {
-		currentStage.close();
-	}
+	Scene currentScene;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -32,17 +25,13 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Main.currentStage = stage;
-		Screen menu = null;
-		if (isLoggedIn) {
-			//menu = new DashboardScreen(); 
-		} else {
-			menu = new MenuScreen();
-		}
-		Scene scene = menu.getScreen();
-		Main.currentStage.setTitle("Transit Application");
-		Main.currentStage.setScene(scene);
-		Main.currentStage.show();
+		
+		Parent menuParent = FXMLLoader.load(getClass().getResource("FXMLMenu.FXML"));
+		
+		Scene scene = new Scene(menuParent);
+		
+		stage.setScene(scene);
+		stage.show();
 		
 	}
 	
