@@ -1,9 +1,10 @@
-
 package transitapp;
 
 import java.util.HashMap;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -24,11 +25,12 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		MenuScreen menu = new MenuScreen();
-		this.currentScene = menu.getScreen();
 		
-		stage.setTitle("Transit Application");
-		stage.setScene(this.currentScene);
+		Parent menuParent = FXMLLoader.load(getClass().getResource("FXMLMenu.FXML"));
+		
+		Scene scene = new Scene(menuParent);
+		
+		stage.setScene(scene);
 		stage.show();
 		
 	}
