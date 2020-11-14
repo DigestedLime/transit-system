@@ -13,20 +13,23 @@ public class Trip {
 	private float total_cost;
 	private ArrayList<Station> route;
 	private Station current;
-	private boolean trip_ended;
+	private int twoHourPeriods;
+	private int total_minutes;
 	
 	public Trip(Station start) {
 		this.total_cost = 0;
 		this.route = new ArrayList<Station>();
-		this.trip_ended = false;
 		this.current = start;
+		this.total_minutes = 0;
+		this.twoHourPeriods = 1;
+		
 		this.route.add(start);
 		if (this.current.getFareType() == "BUS") {
 			this.total_cost = 2;
 		}
 	}
 	
-	public void enter_station(Station station) {
+	public void enter_station(Station station, int minutes) {
 		if (this.current.getFareType() == "TRAIN") {
 			this.total_cost += 0.5;
 		}
@@ -36,9 +39,12 @@ public class Trip {
 			this.total_cost += 2;
 		}
 		
-		if (this.total_cost > 6) {
-			this.total_cost = 6;
+		if (this.total_cost > 6 * this.twoHourPeriods && this.total_minutes < 120 * this.twoHourPeriods) {
+			this.total_cost = 6 * this.twoHourPeriods;
 		}
+		
+		this.total_minutes += minutes;
+		this.twoHourPeriods = (this.total_minutes / 120) + 1;
 	}
 	/**
 	 * Sets current station to null thus ending the trip
@@ -52,6 +58,14 @@ public class Trip {
 		}
 		this.current = null;
 		return true;
+	}
+	
+	/**
+	 * 
+	 * @return The cost of this trip
+	 */
+	public float get_cost() {
+		return this.total_cost;
 	}
 	
 	/***
