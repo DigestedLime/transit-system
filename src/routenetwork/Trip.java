@@ -13,10 +13,12 @@ public class Trip {
 	private float total_cost;
 	private ArrayList<Station> route;
 	private Station current;
+	private boolean trip_ended;
 	
 	public Trip(Station start) {
 		this.total_cost = 0;
 		this.route = new ArrayList<Station>();
+		this.trip_ended = false;
 		this.current = start;
 		this.route.add(start);
 		if (this.current.getFareType() == "BUS") {
