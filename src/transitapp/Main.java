@@ -38,7 +38,7 @@ public class Main extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		readUser();
+		ArrayList<CustomerUser> users = readUser();
 		
 		Parent menuParent = FXMLLoader.load(getClass().getResource("FXMLMenu.FXML"));
 		
@@ -53,7 +53,7 @@ public class Main extends Application{
 	}
 	
 	
-	private void readUser() {
+	private ArrayList<CustomerUser> readUser() {
 		ArrayList<CustomerUser> users = new ArrayList<CustomerUser>();
 		Scanner sc;
 		try {
@@ -96,9 +96,7 @@ public class Main extends Application{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (int i = 0; i < users.size(); i++) {
-			System.out.println(users.get(i).getUsername());
-		}
+		return users;
 		
 	}
 }
