@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
+import user.*;
 
 /**
  * This class is responsible for the keeping the information in the textfields when you fill
@@ -66,7 +67,8 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 		Parent dashParent = loader.load();
 		FXMLDashboardController temp = loader.getController();
 		// authenticate user and pass data over (pass User object later)
-		temp.setData("firstName", email.getText());
+		CustomerUser temp_user = new CustomerUser("Temp", email.getText(), password.getText());
+		temp.setData(temp_user);
 		Scene dashScene = new Scene(dashParent);
 		dashScene.setFill(Color.TRANSPARENT);
 		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());

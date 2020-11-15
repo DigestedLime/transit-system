@@ -11,10 +11,14 @@ import java.util.ResourceBundle;
 import javafx.collections.*;
 import javafx.scene.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.*;
+import user.CustomerUser;
+import user.TravelCard;
+import user.User;
 
 /**
  * This class displays all the information that the user would want to see when they are signed into their account
@@ -25,11 +29,18 @@ import javafx.stage.*;
  *
  */
 public class FXMLDashboardController extends ControllerParent implements Initializable {
-
+	
+	public CustomerUser current_user;
+	public TravelCard current_card;
+	
 	@FXML
 	public Text fullName;
 	@FXML
 	public Text email;
+	@FXML
+	public Text cardBalance;
+	@FXML
+	public ListView cardList;
 	
 	private String dataFullName = "fullName";
 	private String dataEmail = "emailAddress";
@@ -40,12 +51,15 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @param a
 	 * @param b
 	 */
-	public void setData(String a, String b) {
+	public void setData(CustomerUser current_user) {
+		this.current_user = current_user;
+		fullName.setText(this.current_user.getUsername());
+		email.setText(this.current_user.getEmail());
+		if (this.current_user.getCards().size() != 0) {
+			current_card = this.current_user.getCards().get(0);
+			this.update();
+		}
 		
-		this.dataFullName = a;
-		this.dataEmail = b;
-		fullName.setText(a);
-		email.setText(b);
 	}
 	
 	/**
@@ -54,10 +68,56 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void signOutPush(ActionEvent event) throws IOException {
-		
-		setData("firstName", "emailAddress");
+		setData(null);
 		changeScene(event, "FXMLMenu.FXML");
 	}
+	
+	/**
+	 * This method adds 10 dollars to the current card.
+	 * @param event
+	 * @throws IOException
+	 */
+	public void load10Push(ActionEvent event) throws IOException {
+		this.current_card.addBalance(10);
+		this.update();
+	}
+	
+	/**
+	 * This method adds 20 dollars to the current card.
+	 * @param event
+	 * @throws IOException
+	 */
+	public void load20Push(ActionEvent event) throws IOException {
+		this.current_card.addBalance(20);
+		this.update();
+	}
+	
+	/**
+	 * This method adds 50 dollars to the current card.
+	 * @param event
+	 * @throws IOException
+	 */
+	public void load50Push(ActionEvent event) throws IOException {
+		this.current_card.addBalance(50);
+		this.update();
+	}
+	
+	/**
+	 * This method adds a new card for the current user.
+	 * @param event
+	 * @throws IOException
+	 */
+	public void addCardPush(ActionEvent event) throws IOException {
+		this.current_user.addCard();
+		current_card = this.current_user.getCards().get(this.current_user.getCards().size() - 1);
+		this.update();
+
+	}
+	
+	public void update() {
+		cardBalance.setText("$" + Float.toString(current_card.getBalance()));
+	}
+	
 	
 	/**
 	 * Method that needs to be in the class from implementing Initializable.

@@ -2,13 +2,13 @@ package user;
 
 
 
-class TravelCard {
+public class TravelCard {
 	private float balance;
 	private boolean cannot_pay;
 	private boolean suspended;
 	private int id;
 	
-	private static int UNIQUE_ID = 0;
+	public static int UNIQUE_ID;
 	
 	public TravelCard() {
 		this.id = UNIQUE_ID;
@@ -17,6 +17,17 @@ class TravelCard {
 		this.balance = 19;
 		this.cannot_pay = false;
 		this.suspended = false;
+	}
+	
+	public TravelCard(int id, int balance, boolean suspended) {
+		this.id = id;
+		this.balance = balance;
+		this.suspended = suspended;
+		if (this.balance < 0) {
+			this.cannot_pay = true;
+		} else {
+			this.cannot_pay = false;
+		}
 	}
 	
 	public float getBalance() {
