@@ -48,7 +48,7 @@ public class CustomerUser extends User {
 		return newcard.getID();
 	}
 	
-	public void addExistingCard(int id, int balance, boolean suspended) {
+	public void addExistingCard(int id, float balance, boolean suspended) {
 		this.cards.add(new TravelCard(id, balance, suspended));
 	}
 	
