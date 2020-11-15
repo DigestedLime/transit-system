@@ -15,13 +15,27 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
 
+/**
+ * This class shows the settings options and currently only has the back and the
+ * exit button.
+ * @author Lap Khang Tran
+ *
+ */
 public class FXMLSettingsController extends ControllerParent implements Initializable {
 
+	/**
+	 * This method changes the scene to the menu screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	public void backButtonPush(ActionEvent event) throws IOException {
 
 		changeScene(event, "FXMLMenu.FXML");
 	}
-
+	
+	/**
+	 * Method that needs to be in the class from implementing Initializable.
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
