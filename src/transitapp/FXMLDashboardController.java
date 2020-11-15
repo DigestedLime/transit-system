@@ -1,5 +1,6 @@
 package transitapp;
 
+import java.awt.List;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -40,7 +41,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	@FXML
 	public Text cardBalance;
 	@FXML
-	public ListView cardList;
+	public ListView<TravelCard> cardList;
 	
 	private String dataFullName = "fullName";
 	private String dataEmail = "emailAddress";
@@ -59,6 +60,9 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 			current_card = this.current_user.getCards().get(0);
 			this.update();
 		}
+		
+		ObservableList<TravelCard> ol = FXCollections.observableArrayList(current_user.getCards());
+		this.cardList = new ListView<TravelCard>(ol);
 		
 	}
 	
@@ -114,6 +118,21 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 
 	}
 	
+	/**
+	 * This method changes the scene by returning to the menu.
+	 * @param event
+	 * @throws IOException
+	 */
+	public void signOutButtonPush(ActionEvent event) throws IOException {
+		this.current_user = null;
+		changeScene(event, "FXMLMenu.FXML");
+	}
+	
+	public void startJourneyPush(ActionEvent event) throws IOException {
+		
+	}
+	
+	
 	public void update() {
 		cardBalance.setText("$" + Float.toString(current_card.getBalance()));
 	}
@@ -122,10 +141,10 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	/**
 	 * Method that needs to be in the class from implementing Initializable.
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-
 	}
 
 }
