@@ -6,8 +6,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
+import javafx.stage.StageStyle;
 import user.User;
 
 public class Main extends Application{
@@ -30,10 +32,12 @@ public class Main extends Application{
 		
 		Scene scene = new Scene(menuParent);
 		
+		scene.setFill(Color.TRANSPARENT);
+		stage.initStyle(StageStyle.TRANSPARENT);
+		
 		stage.setScene(scene);
 		stage.show();
 		
 	}
-	
 	
 }

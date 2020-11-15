@@ -13,9 +13,11 @@ import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.*;
 
-public class FXMLLoginController implements Initializable {
+public class FXMLLoginController extends ControllerParent implements Initializable {
 
 	@FXML
 	private Button loginButton;
@@ -27,40 +29,24 @@ public class FXMLLoginController implements Initializable {
 
 	public void backButtonPush(ActionEvent event) throws IOException {
 
-		Parent menuParent = FXMLLoader.load(getClass().getResource("FXMLMenu.FXML"));
-		Scene menuScene = new Scene(menuParent);
-
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
-		stage.setScene(menuScene);
-		stage.show();
-	}
-
-	public void exitButton(ActionEvent event) throws IOException {
-
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
-		stage.close();
+		changeScene(event, "FXMLMenu.FXML");
 	}
 
 	public void noAccountButton(ActionEvent event) throws IOException {
 
-		Parent regParent = FXMLLoader.load(getClass().getResource("FXMLRegister.FXML"));
-		Scene regScene = new Scene(regParent);
-
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
-		stage.setScene(regScene);
-		stage.show();
+		changeScene(event, "FXMLRegister.FXML");
 	}
 	
 	public void loginButtonPush(ActionEvent event) throws IOException {
+		
 		System.out.println(email.getText() + ", " + password.getText());
+		
+		changeScene(event, "FXMLDashboard.FXML");
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO
+		
 	}
 
 }

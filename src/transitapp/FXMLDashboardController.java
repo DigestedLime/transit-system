@@ -11,16 +11,11 @@ import java.util.ResourceBundle;
 import javafx.collections.*;
 import javafx.scene.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.*;
 
-public class FXMLSettingsController extends ControllerParent implements Initializable {
-
-	public void backButtonPush(ActionEvent event) throws IOException {
-
-		changeScene(event, "FXMLMenu.FXML");
-	}
+public class FXMLDashboardController extends ControllerParent implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
