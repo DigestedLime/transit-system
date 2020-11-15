@@ -30,9 +30,9 @@ abstract public class ControllerParent implements Initializable {
 	 * @throws IOException
 	 */
 	public void exitButton(ActionEvent event) throws IOException {
-
+		
 		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
+		
 		stage.close();
 	}
 	

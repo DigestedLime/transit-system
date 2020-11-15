@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.*;
 import javafx.scene.*;
@@ -31,6 +32,7 @@ import user.User;
 public class FXMLDashboardController extends ControllerParent implements Initializable {
 	
 	public CustomerUser current_user;
+	public ArrayList<CustomerUser> users;
 	public TravelCard current_card;
 	
 	@FXML
@@ -51,15 +53,15 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @param a
 	 * @param b
 	 */
-	public void setData(CustomerUser current_user) {
-		this.current_user = current_user;
+	public void setData(ArrayList<CustomerUser> users, int index) {
+		this.users = users;
+		this.current_user = users.get(index);
 		fullName.setText(this.current_user.getUsername());
 		email.setText(this.current_user.getEmail());
 		if (this.current_user.getCards().size() != 0) {
 			current_card = this.current_user.getCards().get(0);
 			this.update();
 		}
-		
 	}
 	
 	/**
@@ -68,7 +70,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void signOutPush(ActionEvent event) throws IOException {
-		setData(null);
+		FileHandler.writetoFile(this.users);
 		changeScene(event, "FXMLMenu.FXML");
 	}
 	
@@ -116,6 +118,12 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	
 	public void update() {
 		cardBalance.setText("$" + Float.toString(current_card.getBalance()));
+	}
+	
+	@Override
+	public void exitButton(ActionEvent event) throws IOException {
+		FileHandler.writetoFile(this.users);
+		super.exitButton(event);
 	}
 	
 	

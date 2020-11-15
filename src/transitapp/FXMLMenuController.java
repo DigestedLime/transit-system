@@ -47,6 +47,8 @@ public class FXMLMenuController extends ControllerParent implements Initializabl
 		
 		FXMLLoader loader = changeScene(event, "FXMLLogin.FXML");
 		FXMLLoginController temp = loader.getController();
+		temp.setData(this.users);
+		
 	}
 
 	/**

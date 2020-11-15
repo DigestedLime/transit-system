@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.*;
 import javafx.scene.*;
@@ -33,13 +34,20 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 	@FXML
 	private TextField password;
 	
+	private ArrayList<CustomerUser> users;
+	
+	
+	public void setData(ArrayList<CustomerUser> users) {
+		this.users = users;
+	}
+	
 	/**
 	 * This method changes the scene by returning to the menu.
 	 * @param event
 	 * @throws IOException
 	 */
 	public void backButtonPush(ActionEvent event) throws IOException {
-
+		
 		changeScene(event, "FXMLMenu.FXML");
 	}
 	
@@ -66,14 +74,29 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDashboard.FXML"));
 		Parent dashParent = loader.load();
 		FXMLDashboardController temp = loader.getController();
-		// authenticate user and pass data over (pass User object later)
-		CustomerUser temp_user = new CustomerUser("Temp", email.getText(), password.getText());
-		temp.setData(temp_user);
-		Scene dashScene = new Scene(dashParent);
-		dashScene.setFill(Color.TRANSPARENT);
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-		stage.setScene(dashScene);
-		stage.show();
+		boolean logInSuccess = false;
+		int userIndex = 0;
+		for (int i = 0; i < this.users.size(); i++) {
+			if (this.users.get(i).logIn(password.getText(), email.getText())) {
+				userIndex = i;
+				logInSuccess = true;
+				break;
+			}
+		}
+		
+		if (!logInSuccess) {
+			/* TODO: Add some message to tell log in failed (low priority: can just not do anything)
+			 * 
+			 */
+		} else {
+			temp.setData(this.users, userIndex);
+			Scene dashScene = new Scene(dashParent);
+			dashScene.setFill(Color.TRANSPARENT);
+			Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+			stage.setScene(dashScene);
+			stage.show();
+		}
+		
 	}
 	
 	/**

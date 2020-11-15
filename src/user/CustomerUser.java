@@ -30,6 +30,10 @@ public class CustomerUser extends User {
 		this.trips.add(0, trip);
 	}
 	
+	public boolean logIn(String password, String email) {
+		return super.logIn(password) && this.email.equals(email);
+	}
+	
 	public String getEmail() {
 		return this.email;
 	}
