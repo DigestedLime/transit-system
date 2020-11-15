@@ -19,7 +19,7 @@
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="51.0" layoutY="674.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="809.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #777; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 25, 0, 0, 0);" text="Status: Insufficient Funds." textFill="#808080">
+      <Button fx:id="status" layoutX="51.0" layoutY="674.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="809.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #777; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 25, 0, 0, 0);" text="Status: Insufficient Funds." textFill="#808080">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
@@ -49,7 +49,7 @@
             <Font name="Segoe UI" size="21.0" />
          </font>
       </Text>
-      <Button layoutX="411.0" layoutY="580.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="486.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Start Journey">
+      <Button layoutX="411.0" layoutY="580.0" mnemonicParsing="false" onAction="#startJourney" prefHeight="64.0" prefWidth="486.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Start Journey">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
@@ -59,7 +59,7 @@
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="51.0" layoutY="580.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="330.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Add New Card">
+      <Button layoutX="51.0" layoutY="580.0" mnemonicParsing="false" onAction="#addCard" prefHeight="64.0" prefWidth="330.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Add New Card">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
@@ -84,7 +84,7 @@
             <Font name="Segoe UI" size="21.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="51.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER" wrappingWidth="330.0">
+      <Text fx:id="balance" fill="WHITE" layoutX="51.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER" wrappingWidth="330.0">
          <font>
             <Font name="Segoe UI" size="47.0" />
          </font>
@@ -109,25 +109,25 @@
             <Font name="Segoe UI" size="21.0" />
          </font>
       </Text>
-      <Button layoutX="471.0" layoutY="67.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $10">
+      <Button layoutX="471.0" layoutY="67.0" mnemonicParsing="false" onAction="#pushLoad10" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $10">
          <font>
             <Font name="Segoe UI Semilight" size="26.0" />
          </font>
       </Button>
-      <Button layoutX="703.0" layoutY="67.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $20">
+      <Button layoutX="703.0" layoutY="67.0" mnemonicParsing="false" onAction="#pushLoad20" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $20">
          <font>
             <Font name="Segoe UI Semilight" size="26.0" />
          </font>
       </Button>
-      <Button layoutX="935.0" layoutY="67.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $50">
+      <Button layoutX="935.0" layoutY="67.0" mnemonicParsing="false" onAction="#pushLoad50" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $50">
          <font>
             <Font name="Segoe UI Semilight" size="26.0" />
          </font>
       </Button>
-      <ListView layoutX="51.0" layoutY="431.0" prefHeight="94.0" prefWidth="330.0" />
-      <ListView layoutX="411.0" layoutY="268.0" prefHeight="114.0" prefWidth="343.0" />
-      <ListView layoutX="791.0" layoutY="268.0" prefHeight="114.0" prefWidth="343.0" />
-      <TextField layoutX="411.0" layoutY="488.0" prefHeight="37.0" prefWidth="343.0" />
-      <TextField layoutX="791.0" layoutY="488.0" prefHeight="37.0" prefWidth="343.0" />
+      <ListView fx:id="cardList" layoutX="51.0" layoutY="431.0" prefHeight="94.0" prefWidth="330.0" />
+      <ListView fx:id="depStationList" layoutX="411.0" layoutY="268.0" prefHeight="114.0" prefWidth="343.0" />
+      <ListView fx:id="terminusList" layoutX="791.0" layoutY="268.0" prefHeight="114.0" prefWidth="343.0" />
+      <TextField fx:id="timeIn" layoutX="411.0" layoutY="488.0" prefHeight="37.0" prefWidth="343.0" />
+      <TextField fx:id="timeOut" layoutX="791.0" layoutY="488.0" prefHeight="37.0" prefWidth="343.0" />
    </children>
 </Pane>
