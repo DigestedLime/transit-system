@@ -1,5 +1,6 @@
 package transitapp;
 
+import java.awt.List;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -7,7 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import backendapi.RouteMap;
 import javafx.collections.*;
 import javafx.scene.*;
 import javafx.scene.control.Button;
@@ -16,6 +20,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.*;
+import routenetwork.BusStation;
+import routenetwork.Journey;
+import routenetwork.RouteController;
+import routenetwork.Station;
+import routenetwork.TrainStation;
+import user.CustomerUser;
+import user.TravelCard;
+import user.User;
 
 /**
  * This class displays all the information that the user would want to see when they are signed into their account
@@ -26,23 +38,27 @@ import javafx.stage.*;
  *
  */
 public class FXMLDashboardController extends ControllerParent implements Initializable {
-
+	
+	public CustomerUser currentUser;
+	public TravelCard currentCard;
+	public RouteController routeController;
+	
 	@FXML
 	public Text fullName;
 	@FXML
 	public Text email;
 	@FXML
+	public Text cardBalance;
+	@FXML
 	public ListView<String> cardList;
 	@FXML
-	public ListView<String> depStationList;
+	public ListView<String> departingStation;
 	@FXML
-	public ListView<String> terminusList;
+	public ListView<String> terminusStation;
 	@FXML
 	public TextField timeIn;
 	@FXML
 	public TextField timeOut;
-	@FXML
-	public Text balance;
 	@FXML
 	public Button status;
 
@@ -55,12 +71,16 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @param a
 	 * @param b
 	 */
-	public void setData(String a, String b) {
-		
-		this.dataFullName = a;
-		this.dataEmail = b;
-		fullName.setText(a);
-		email.setText(b);
+	public void setData(CustomerUser current_user) {
+		this.currentUser = current_user;
+		if (this.currentUser != null) {
+			fullName.setText(this.currentUser.getUsername());
+			email.setText(this.currentUser.getEmail());
+			if (this.currentUser.getCards().size() != 0) {
+				currentCard = this.currentUser.getCards().get(0);
+				this.update();
+			}
+		}
 	}
 	
 	/**
@@ -69,29 +89,8 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void signOutPush(ActionEvent event) throws IOException {
-		
-		setData("firstName", "emailAddress");
+		setData(null); //TODO: THIS WILL ERROR
 		changeScene(event, "FXMLMenu.FXML");
-	}
-	
-	public void pushLoad10(ActionEvent event) throws IOException {
-		// TODO
-	}
-	
-	public void pushLoad20(ActionEvent event) throws IOException {
-		// TODO
-	}
-	
-	public void pushLoad50(ActionEvent event) throws IOException {
-		// TODO
-	}
-	
-	public void addCard(ActionEvent event) throws IOException {
-		// TODO
-	}
-	
-	public void startJourney(ActionEvent event) throws IOException {
-		// TODO
 	}
 	
 	/**
@@ -102,12 +101,77 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	}
 	
 	/**
+	 * This method adds 10 dollars to the current card.
+	 * @param event
+	 * @throws IOException
+	 */
+	public void load10Push(ActionEvent event) throws IOException {
+		this.currentCard.addBalance(10);
+		this.update();
+	}
+	
+	/**
+	 * This method adds 20 dollars to the current card.
+	 * @param event
+	 * @throws IOException
+	 */
+	public void load20Push(ActionEvent event) throws IOException {
+		this.currentCard.addBalance(20);
+		this.update();
+	}
+	
+	/**
+	 * This method adds 50 dollars to the current card.
+	 * @param event
+	 * @throws IOException
+	 */
+	public void load50Push(ActionEvent event) throws IOException {
+		this.currentCard.addBalance(50);
+		this.update();
+	}
+	
+	/**
+	 * This method adds a new card for the current user.
+	 * @param event
+	 * @throws IOException
+	 */
+	public void addCardPush(ActionEvent event) throws IOException {
+		this.currentUser.addCard();
+		currentCard = this.currentUser.getCards().get(this.currentUser.getCards().size() - 1);
+		this.update();
+
+	}
+	
+	public void startJourneyPush(ActionEvent event) throws IOException {
+		String depart = departingStation.getSelectionModel().getSelectedItem();
+		String end = terminusStation.getSelectionModel().getSelectedItem();
+		System.out.println("Depart from: " + depart + ", End at: " + end);
+		Journey j = new Journey(depart, end, this.routeController);
+		this.currentCard.pay((float) j.calculateFare());
+		this.update();
+	}
+	
+	
+	public void update() {
+		cardBalance.setText("$" + Float.toString(currentCard.getBalance()));
+	}
+	
+	
+	/**
 	 * Method that needs to be in the class from implementing Initializable.
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-
+		RouteMap temp = new RouteMap();
+		temp.initialize("subway_map.txt");
+		this.routeController = temp.getRouteMap();
+		
+		departingStation.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
+		terminusStation.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
+		
+		
+		
 	}
 
 }
