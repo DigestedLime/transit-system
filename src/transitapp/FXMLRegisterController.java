@@ -13,9 +13,18 @@ import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.*;
 
-public class FXMLRegisterController implements Initializable {
+/**
+ * This class is responsible for registering a new user. It would take in the full name of the user,
+ * their email, and the password that they wish to sign in with. It also has a button to go back
+ * to the menu, and another button that allows them to go the login screen if they already have
+ * an account and do not wish to make another account.
+ * @author Lap Khang Tran
+ *
+ */
+public class FXMLRegisterController extends ControllerParent implements Initializable {
 	
 	@FXML
 	private TextField fullName;
@@ -23,40 +32,41 @@ public class FXMLRegisterController implements Initializable {
 	private TextField email;
 	@FXML
 	private TextField password;
-
+	
+	/**
+	 * This method changes the screen to the menu screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	public void backButtonPush(ActionEvent event) throws IOException {
 
-		Parent menuParent = FXMLLoader.load(getClass().getResource("FXMLMenu.FXML"));
-		Scene menuScene = new Scene(menuParent);
-
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
-		stage.setScene(menuScene);
-		stage.show();
+		changeScene(event, "FXMLMenu.FXML");
 	}
 	
-	public void exitButton(ActionEvent event) throws IOException {
-
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
-		stage.close();
-	}
-	
+	/**
+	 * This method changes the screen to the login screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	public void hasAccountButton(ActionEvent event) throws IOException {
 
-		Parent loginParent = FXMLLoader.load(getClass().getResource("FXMLLogin.FXML"));
-		Scene loginScene = new Scene(loginParent);
-
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
-		stage.setScene(loginScene);
-		stage.show();
+		changeScene(event, "FXMLLogin.FXML");
 	}
 	
+	/**
+	 * This method stores the information of the new user when they click the register button
+	 * after putting in their information
+	 * @param event
+	 * @throws IOException
+	 */
 	public void regButtonPush(ActionEvent event) throws IOException {
+		
 		System.out.println(fullName.getText() + ", " + email.getText() + ", " + password.getText());
 	}
-
+	
+	/**
+	 * Method that needs to be in the class from implementing Initializable.
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

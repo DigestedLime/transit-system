@@ -12,28 +12,30 @@ import javafx.collections.*;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.*;
 
-public class FXMLSettingsController implements Initializable {
+/**
+ * This class shows the settings options and currently only has the back and the
+ * exit button.
+ * @author Lap Khang Tran
+ *
+ */
+public class FXMLSettingsController extends ControllerParent implements Initializable {
 
+	/**
+	 * This method changes the scene to the menu screen.
+	 * @param event
+	 * @throws IOException
+	 */
 	public void backButtonPush(ActionEvent event) throws IOException {
 
-		Parent menuParent = FXMLLoader.load(getClass().getResource("FXMLMenu.FXML"));
-		Scene menuScene = new Scene(menuParent);
-
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
-		stage.setScene(menuScene);
-		stage.show();
+		changeScene(event, "FXMLMenu.FXML");
 	}
 	
-	public void exitButton(ActionEvent event) throws IOException {
-
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
-		stage.close();
-	}
-
+	/**
+	 * Method that needs to be in the class from implementing Initializable.
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

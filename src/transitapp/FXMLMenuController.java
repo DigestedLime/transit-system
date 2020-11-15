@@ -12,60 +12,57 @@ import javafx.collections.*;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.*;
 
-public class FXMLMenuController implements Initializable {
+/**
+ * This class is responsible for the events that happen in the menu screen. Any
+ * button event that happens would cause change the scene to login, settings or
+ * register.
+ * 
+ * @author Lap Khang Tran
+ *
+ */
+public class FXMLMenuController extends ControllerParent implements Initializable {
 
-	@FXML
-	private Button loginButton;
-	@FXML
-	private Button regButton;
-	@FXML
-	private Button settingsButton;
-
+	/**
+	 * This method changes the scene to the login screen.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void loginButtonPush(ActionEvent event) throws IOException {
 
-		Parent loginParent = FXMLLoader.load(getClass().getResource("FXMLLogin.FXML"));
-		Scene loginScene = new Scene(loginParent);
-
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
-		stage.setScene(loginScene);
-		stage.show();
+		changeScene(event, "FXMLLogin.FXML");
 	}
-	
+
+	/**
+	 * This method changes the scene to the settings screen.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void settingsButtonPush(ActionEvent event) throws IOException {
-		
-		Parent settingsParent = FXMLLoader.load(getClass().getResource("FXMLSettings.FXML"));
-		Scene settingsScene = new Scene(settingsParent);
-		
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
 
-		stage.setScene(settingsScene);
-		stage.show();
+		changeScene(event, "FXMLSettings.FXML");
 	}
-	
+
+	/**
+	 * This method changes the scene to the register screen.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void registerButtonPush(ActionEvent event) throws IOException {
-		
-		Parent regParent = FXMLLoader.load(getClass().getResource("FXMLRegister.FXML"));
-		Scene regScene = new Scene(regParent);
-		
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
 
-		stage.setScene(regScene);
-		stage.show();
+		changeScene(event, "FXMLRegister.FXML");
 	}
 
-	public void exitButton(ActionEvent event) throws IOException {
-
-		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
-		stage.close();
-	}
-
+	/**
+	 * Method that needs to be in the class from implementing Initializable.
+	 */
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO
-	}
+	public void initialize(URL arg0, ResourceBundle arg1) {}
 
 }
