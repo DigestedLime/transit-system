@@ -54,16 +54,16 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 */
 	public void setData(CustomerUser current_user) {
 		this.current_user = current_user;
-		fullName.setText(this.current_user.getUsername());
-		email.setText(this.current_user.getEmail());
-		if (this.current_user.getCards().size() != 0) {
-			current_card = this.current_user.getCards().get(0);
-			this.update();
+		if (this.current_user != null) {
+			fullName.setText(this.current_user.getUsername());
+			email.setText(this.current_user.getEmail());
+			if (this.current_user.getCards().size() != 0) {
+				current_card = this.current_user.getCards().get(0);
+				this.update();
+			}
+			ObservableList<TravelCard> ol = FXCollections.observableArrayList(current_user.getCards());
+			this.cardList = new ListView<TravelCard>(ol);
 		}
-		
-		ObservableList<TravelCard> ol = FXCollections.observableArrayList(current_user.getCards());
-		this.cardList = new ListView<TravelCard>(ol);
-		
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void signOutPush(ActionEvent event) throws IOException {
-		setData(null);
+		setData(null); //TODO: THIS WILL ERROR
 		changeScene(event, "FXMLMenu.FXML");
 	}
 	
@@ -116,16 +116,6 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 		current_card = this.current_user.getCards().get(this.current_user.getCards().size() - 1);
 		this.update();
 
-	}
-	
-	/**
-	 * This method changes the scene by returning to the menu.
-	 * @param event
-	 * @throws IOException
-	 */
-	public void signOutButtonPush(ActionEvent event) throws IOException {
-		this.current_user = null;
-		changeScene(event, "FXMLMenu.FXML");
 	}
 	
 	public void startJourneyPush(ActionEvent event) throws IOException {
