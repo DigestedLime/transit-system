@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.collections.*;
 import javafx.scene.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -30,7 +31,21 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	public Text fullName;
 	@FXML
 	public Text email;
-	
+	@FXML
+	public ListView<String> cardList;
+	@FXML
+	public ListView<String> depStationList;
+	@FXML
+	public ListView<String> terminusList;
+	@FXML
+	public TextField timeIn;
+	@FXML
+	public TextField timeOut;
+	@FXML
+	public Text balance;
+	@FXML
+	public Button status;
+
 	private String dataFullName = "fullName";
 	private String dataEmail = "emailAddress";
 	
@@ -57,6 +72,33 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 		
 		setData("firstName", "emailAddress");
 		changeScene(event, "FXMLMenu.FXML");
+	}
+	
+	public void pushLoad10(ActionEvent event) throws IOException {
+		// TODO
+	}
+	
+	public void pushLoad20(ActionEvent event) throws IOException {
+		// TODO
+	}
+	
+	public void pushLoad50(ActionEvent event) throws IOException {
+		// TODO
+	}
+	
+	public void addCard(ActionEvent event) throws IOException {
+		// TODO
+	}
+	
+	public void startJourney(ActionEvent event) throws IOException {
+		// TODO
+	}
+	
+	/**
+	 * update lists and statuses and balance here, and then call this method in login controller FXMLLoginController.loginButtonPush()
+	 */
+	public void updateLists() {
+		// TODO
 	}
 	
 	/**
