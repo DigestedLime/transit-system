@@ -2,20 +2,32 @@ package user;
 
 import java.util.ArrayList;
 
+import routenetwork.Trip;
+
 class CustomerUser extends User {
 	
 	private String email;
 	private ArrayList<TravelCard> cards;
+	//Has a record of the 3 most recent trips. Start of the array means latest trip
+	private ArrayList<Trip> trips;
 	
 	public CustomerUser(String username, String password, String email) {
 		super(username, password);
 		this.email = email;
 		this.cards = new ArrayList<TravelCard>();
+		this.trips = new ArrayList<Trip>();
 	}
 
 	
 	public void changeName(String new_name) {
 		this.username = new_name;
+	}
+	
+	public void addTrip(Trip trip) {
+		if (this.trips.size() == 3) {
+			this.trips.remove(2);
+		}
+		this.trips.add(0, trip);
 	}
 	
 	public String getEmail() {

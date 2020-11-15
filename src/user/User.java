@@ -1,11 +1,10 @@
 package user;
 
 /***
- * 
- * @author Rehmat
- * 
- * 
- * A User class that takes in the 
+ * A User class that has a username and password
+ *
+ * It is a parent class with the basic functionality for logging in, with child classes
+ * that have their own functionality
  */
 public class User {
 	

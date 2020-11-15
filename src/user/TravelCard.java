@@ -5,6 +5,7 @@ package user;
 class TravelCard {
 	private float balance;
 	private boolean cannot_pay;
+	private boolean suspended;
 	private int id;
 	
 	private static int UNIQUE_ID = 0;
@@ -15,6 +16,7 @@ class TravelCard {
 		
 		this.balance = 19;
 		this.cannot_pay = false;
+		this.suspended = false;
 	}
 	
 	public float getBalance() {
@@ -25,8 +27,18 @@ class TravelCard {
 		return this.id;
 	}
 	
+	public void suspendCard() {
+		this.suspended = true;
+	}
+	
+	public void unSuspendCard() {
+		this.suspended = false;
+	}
 	
 	public boolean addBalance(int amount) {
+		if (this.suspended) {
+			return false;
+		}
 		if (amount ==  10 || amount == 20 || amount == 50) {
 			this.balance += amount;
 		} else {
@@ -39,7 +51,7 @@ class TravelCard {
 	}
 	
 	public boolean pay(float amount) {
-		if (this.cannot_pay) {
+		if (this.cannot_pay || this.suspended) {
 			return false;
 		} 
 		this.balance -= amount;
