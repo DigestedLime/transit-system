@@ -19,7 +19,7 @@
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="51.0" layoutY="676.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="809.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #777; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 25, 0, 0, 0);" text="Status: Insufficient Funds." textFill="#808080">
+      <Button fx:id="status" layoutX="51.0" layoutY="676.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="809.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #777; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 25, 0, 0, 0);" text="Status: Insufficient Funds." textFill="#808080">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
@@ -127,7 +127,7 @@
       <ListView fx:id="cardList" layoutX="51.0" layoutY="431.0" prefHeight="94.0" prefWidth="330.0" />
       <ListView fx:id="departingStation" layoutX="411.0" layoutY="268.0" prefHeight="114.0" prefWidth="343.0" />
       <ListView fx:id="terminusStation" layoutX="796.0" layoutY="268.0" prefHeight="114.0" prefWidth="343.0" />
-      <TextField layoutX="411.0" layoutY="488.0" prefHeight="37.0" prefWidth="343.0" />
-      <TextField layoutX="796.0" layoutY="488.0" prefHeight="37.0" prefWidth="343.0" />
+      <TextField fx:id="timeIn" layoutX="411.0" layoutY="488.0" prefHeight="37.0" prefWidth="343.0" />
+      <TextField fx:id="timeOut" layoutX="796.0" layoutY="488.0" prefHeight="37.0" prefWidth="343.0" />
    </children>
 </Pane>

@@ -50,13 +50,18 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	@FXML
 	public Text cardBalance;
 	@FXML
-	public ListView<TravelCard> cardList;
+	public ListView<String> cardList;
 	@FXML
 	public ListView<String> departingStation;
 	@FXML
 	public ListView<String> terminusStation;
-	
-	
+	@FXML
+	public TextField timeIn;
+	@FXML
+	public TextField timeOut;
+	@FXML
+	public Button status;
+
 	private String dataFullName = "fullName";
 	private String dataEmail = "emailAddress";
 	
@@ -86,6 +91,13 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	public void signOutPush(ActionEvent event) throws IOException {
 		setData(null); //TODO: THIS WILL ERROR
 		changeScene(event, "FXMLMenu.FXML");
+	}
+	
+	/**
+	 * update lists and statuses and balance here, and then call this method in login controller FXMLLoginController.loginButtonPush()
+	 */
+	public void updateLists() {
+		// TODO
 	}
 	
 	/**
