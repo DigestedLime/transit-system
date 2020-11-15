@@ -8,7 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import backendapi.RouteMap;
 import javafx.collections.*;
 import javafx.scene.*;
 import javafx.scene.control.Button;
@@ -17,6 +20,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.*;
+import routenetwork.BusStation;
+import routenetwork.Journey;
+import routenetwork.RouteController;
+import routenetwork.Station;
+import routenetwork.TrainStation;
 import user.CustomerUser;
 import user.TravelCard;
 import user.User;
@@ -31,8 +39,9 @@ import user.User;
  */
 public class FXMLDashboardController extends ControllerParent implements Initializable {
 	
-	public CustomerUser current_user;
-	public TravelCard current_card;
+	public CustomerUser currentUser;
+	public TravelCard currentCard;
+	public RouteController routeController;
 	
 	@FXML
 	public Text fullName;
@@ -42,6 +51,11 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	public Text cardBalance;
 	@FXML
 	public ListView<TravelCard> cardList;
+	@FXML
+	public ListView<String> departingStation;
+	@FXML
+	public ListView<String> terminusStation;
+	
 	
 	private String dataFullName = "fullName";
 	private String dataEmail = "emailAddress";
@@ -53,16 +67,14 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @param b
 	 */
 	public void setData(CustomerUser current_user) {
-		this.current_user = current_user;
-		if (this.current_user != null) {
-			fullName.setText(this.current_user.getUsername());
-			email.setText(this.current_user.getEmail());
-			if (this.current_user.getCards().size() != 0) {
-				current_card = this.current_user.getCards().get(0);
+		this.currentUser = current_user;
+		if (this.currentUser != null) {
+			fullName.setText(this.currentUser.getUsername());
+			email.setText(this.currentUser.getEmail());
+			if (this.currentUser.getCards().size() != 0) {
+				currentCard = this.currentUser.getCards().get(0);
 				this.update();
 			}
-			ObservableList<TravelCard> ol = FXCollections.observableArrayList(current_user.getCards());
-			this.cardList = new ListView<TravelCard>(ol);
 		}
 	}
 	
@@ -82,7 +94,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load10Push(ActionEvent event) throws IOException {
-		this.current_card.addBalance(10);
+		this.currentCard.addBalance(10);
 		this.update();
 	}
 	
@@ -92,7 +104,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load20Push(ActionEvent event) throws IOException {
-		this.current_card.addBalance(20);
+		this.currentCard.addBalance(20);
 		this.update();
 	}
 	
@@ -102,7 +114,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load50Push(ActionEvent event) throws IOException {
-		this.current_card.addBalance(50);
+		this.currentCard.addBalance(50);
 		this.update();
 	}
 	
@@ -112,19 +124,24 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void addCardPush(ActionEvent event) throws IOException {
-		this.current_user.addCard();
-		current_card = this.current_user.getCards().get(this.current_user.getCards().size() - 1);
+		this.currentUser.addCard();
+		currentCard = this.currentUser.getCards().get(this.currentUser.getCards().size() - 1);
 		this.update();
 
 	}
 	
 	public void startJourneyPush(ActionEvent event) throws IOException {
-		
+		String depart = departingStation.getSelectionModel().getSelectedItem();
+		String end = terminusStation.getSelectionModel().getSelectedItem();
+		System.out.println("Depart from: " + depart + ", End at: " + end);
+		Journey j = new Journey(depart, end, this.routeController);
+		this.currentCard.pay((float) j.calculateFare());
+		this.update();
 	}
 	
 	
 	public void update() {
-		cardBalance.setText("$" + Float.toString(current_card.getBalance()));
+		cardBalance.setText("$" + Float.toString(currentCard.getBalance()));
 	}
 	
 	
@@ -134,7 +151,15 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		RouteMap temp = new RouteMap();
+		temp.initialize("subway_map.txt");
+		this.routeController = temp.getRouteMap();
+		
+		departingStation.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
+		terminusStation.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
+		
+		
+		
 	}
 
 }
