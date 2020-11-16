@@ -75,8 +75,9 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @param b
 	 */
 
-	public void setData(CustomerUser user) {
-		this.currentUser = user;
+	public void setData(ArrayList<CustomerUser> users, int userIndex) {
+		this.users = users;
+		this.currentUser = users.get(userIndex);
 		if (this.currentUser != null) {
 			fullName.setText(this.currentUser.getUsername());
 			email.setText(this.currentUser.getEmail());
@@ -94,8 +95,10 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 */
 	public void signOutPush(ActionEvent event) throws IOException {
 		FileHandler.writetoFile(this.users);
-		this.currentUser = null;
-		changeScene(event, "FXMLMenu.FXML");
+    this.currentUser = null;
+		FXMLLoader loader = changeScene(event, "FXMLMenu.FXML");
+		FXMLMenuController menu = loader.getController();
+		menu.setData(this.users);
 	}
 	
 	/**

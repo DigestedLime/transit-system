@@ -51,8 +51,10 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 	 * @throws IOException
 	 */
 	public void backButtonPush(ActionEvent event) throws IOException {
-
-		changeScene(event, "FXMLMenu.FXML");
+		
+		FXMLLoader loader =  changeScene(event, "FXMLMenu.FXML");
+		FXMLMenuController menu = loader.getController();
+		menu.setData(this.users);
 	}
 	
 	/**
@@ -61,7 +63,9 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 	 * @throws IOException
 	 */
 	public void hasAccountButton(ActionEvent event) throws IOException {
-		changeScene(event, "FXMLLogin.FXML");
+		FXMLLoader loader = changeScene(event, "FXMLLogin.FXML");
+		FXMLLoginController login = loader.getController();
+		login.setData(this.users);
 	}
 	
 	/**
