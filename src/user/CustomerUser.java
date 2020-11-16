@@ -8,26 +8,34 @@ public class CustomerUser extends User {
 	
 	private String email;
 	private ArrayList<TravelCard> cards;
-	//Has a record of the 3 most recent trips. Start of the array means latest trip
-	private ArrayList<Trip> trips;
+	private static int MAX_TRIPS = 5;
+	//Has a record of the most recent trips. Start of the array means latest trip
+	private ArrayList<String> trips;
 	
 	public CustomerUser(String username, String password, String email) {
 		super(username, password);
 		this.email = email;
 		this.cards = new ArrayList<TravelCard>();
-		this.trips = new ArrayList<Trip>();
+		this.trips = new ArrayList<String>();
 	}
 
-	
 	public void changeName(String new_name) {
 		this.username = new_name;
 	}
 	
 	public void addTrip(Trip trip) {
-		if (this.trips.size() == 3) {
-			this.trips.remove(2);
+		if (this.trips.size() == MAX_TRIPS) {
+			this.trips.remove(0);
 		}
-		this.trips.add(0, trip);
+		this.trips.add(trip.getRoute().get(0).getName() + " -> " + trip.getRoute().get(
+				trip.getRoute().size() - 2).getName() + ": " + Float.toString(trip.get_cost()));
+	}
+	
+	public void addTripString(String trip) {
+		if (this.trips.size() == MAX_TRIPS) {
+			this.trips.remove(MAX_TRIPS - 1);
+		}
+		this.trips.add(trip);
 	}
 	
 	public boolean logIn(String password, String email) {
@@ -40,6 +48,10 @@ public class CustomerUser extends User {
 	
 	public ArrayList<TravelCard> getCards() {
 		return this.cards;
+	}
+	
+	public ArrayList<String> getTrips() {
+		return this.trips;
 	}
 	
 	/**
