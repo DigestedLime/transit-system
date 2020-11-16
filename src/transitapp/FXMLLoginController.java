@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.*;
 import user.*;
 
@@ -33,9 +34,10 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 	private TextField email;
 	@FXML
 	private TextField password;
+	@FXML
+	private Text errorMsg;
 	
 	private ArrayList<CustomerUser> users;
-	
 	
 	public void setData(ArrayList<CustomerUser> users) {
 		this.users = users;
@@ -83,6 +85,7 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 		for (int i = 0; i < this.users.size(); i++) {
 			if (this.users.get(i).logIn(password.getText(), email.getText())) {
 				userIndex = i;
+				errorMsg.setText("");
 				logInSuccess = true;
 				break;
 			}
@@ -92,6 +95,7 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 			/* TODO: Add some message to tell log in failed (low priority: can just not do anything)
 			 * 
 			 */
+			errorMsg.setText("Error: Invalid Email/Password");
 		} else {
 			temp.setData(this.users, userIndex);
 			Scene dashScene = new Scene(dashParent);
