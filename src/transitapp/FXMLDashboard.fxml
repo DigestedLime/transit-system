@@ -13,7 +13,7 @@
             <Font name="Segoe UI Light" size="46.0" />
          </font>
       </Text>
-      <Button layoutX="890.0" layoutY="674.0" mnemonicParsing="false" onAction="#exitButton" prefHeight="64.0" prefWidth="247.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Exit Application">
+      <Button layoutX="895.0" layoutY="676.0" mnemonicParsing="false" onAction="#exitButton" prefHeight="64.0" prefWidth="247.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Exit Application">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
@@ -53,7 +53,7 @@
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="51.0" layoutY="580.0" mnemonicParsing="false" onAction="#addCard" prefHeight="64.0" prefWidth="330.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Add New Card">
+      <Button layoutX="51.0" layoutY="580.0" mnemonicParsing="false" onAction="#addCardPush" prefHeight="64.0" prefWidth="330.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Add New Card">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
@@ -106,6 +106,7 @@
          </font>
       </Text>
       <Text fx:id="balance" fill="WHITE" layoutX="429.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER" wrappingWidth="330.0">
+
          <font>
             <Font name="Segoe UI" size="47.0" />
          </font>

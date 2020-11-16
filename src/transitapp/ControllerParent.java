@@ -30,9 +30,9 @@ abstract public class ControllerParent implements Initializable {
 	 * @throws IOException
 	 */
 	public void exitButton(ActionEvent event) throws IOException {
-
+		
 		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
+		
 		stage.close();
 	}
 	
@@ -46,8 +46,9 @@ abstract public class ControllerParent implements Initializable {
 	 * @param file
 	 * @throws IOException
 	 */
-	public void changeScene(Event event, String file) throws IOException {
-		Parent parent = FXMLLoader.load(getClass().getResource(file));
+	public FXMLLoader changeScene(Event event, String file) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(file));
+		Parent parent = loader.load();
 		Scene scene = new Scene(parent);
 		scene.setFill(Color.TRANSPARENT);
 
@@ -55,7 +56,7 @@ abstract public class ControllerParent implements Initializable {
 
 		stage.setScene(scene);
 		stage.show();
-		
+		return loader;
 	}
 
 	@Override

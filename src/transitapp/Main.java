@@ -1,7 +1,14 @@
 package transitapp;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
+import user.CustomerUser;
+import user.TravelCard;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +21,11 @@ import user.User;
 
 public class Main extends Application{
 	
-	HashMap<String, User> users;
+	//HashMap<String, User> users;
 	
 	Boolean isLoggedIn = false;
 	
+	ArrayList<User> users;
 	User currentUser;
 	Scene currentScene;
 	
@@ -28,7 +36,14 @@ public class Main extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		Parent menuParent = FXMLLoader.load(getClass().getResource("FXMLMenu.FXML"));
+		ArrayList<CustomerUser> users = FileHandler.readFile();
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMenu.FXML"));
+		
+		Parent menuParent = loader.load();
+		
+		FXMLMenuController temp = loader.getController();
+		temp.setData(users);
 		
 		Scene scene = new Scene(menuParent);
 		
@@ -39,5 +54,4 @@ public class Main extends Application{
 		stage.show();
 		
 	}
-	
 }

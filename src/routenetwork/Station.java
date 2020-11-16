@@ -1,8 +1,12 @@
 package routenetwork;
 
+import java.util.ArrayList;
+
 public abstract class Station {
 
 	private String name;
+	private String fareType;
+	protected ArrayList<Station> linkedStns = new ArrayList<Station>();
 	
 	public Station(String name) {
 		this.setName(name);
@@ -17,8 +21,16 @@ public abstract class Station {
 		this.name = name;
 	}
 	
+	public ArrayList<Station> getLinkedStations() {
+		return this.linkedStns;
+	}
+	
 	public String getFareType() {
-		return null;
+		return this.fareType;
+	}
+
+	public String toString() {
+		return this.getName();
 	}
 	
 }

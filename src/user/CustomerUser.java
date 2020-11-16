@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import routenetwork.Trip;
 
-class CustomerUser extends User {
+public class CustomerUser extends User {
 	
 	private String email;
 	private ArrayList<TravelCard> cards;
@@ -30,8 +30,16 @@ class CustomerUser extends User {
 		this.trips.add(0, trip);
 	}
 	
+	public boolean logIn(String password, String email) {
+		return super.logIn(password) && this.email.equals(email);
+	}
+	
 	public String getEmail() {
 		return this.email;
+	}
+	
+	public ArrayList<TravelCard> getCards() {
+		return this.cards;
 	}
 	
 	/**
@@ -42,6 +50,10 @@ class CustomerUser extends User {
 		TravelCard newcard = new TravelCard();
 		this.cards.add(newcard);
 		return newcard.getID();
+	}
+	
+	public void addExistingCard(int id, float balance, boolean suspended) {
+		this.cards.add(new TravelCard(id, balance, suspended));
 	}
 	
 	public boolean removeCard(int id) {

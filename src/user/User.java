@@ -17,9 +17,14 @@ public class User {
 	}
 	
 	public boolean logIn(String password) {
-		if (this.pass == password) {
-			return true;
-		}
-		return false;
+		return this.pass.equals(password);
+		
+	}
+	
+	public String getUsername() {
+		return this.username;
+	}
+	public String getPassword() {
+		return this.pass;
 	}
 }
