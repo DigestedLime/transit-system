@@ -92,6 +92,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 				} else {
 					toggleActivate.setText("Suspend");
 				}
+				cardList.getSelectionModel().select("" + this.currentCard.getID());
 				this.update();
 			}
 		}
@@ -193,7 +194,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 				update();
 			}
 		}
-	
+
 	}
 
 	public void removeCardPush(ActionEvent event) throws IOException {
@@ -209,6 +210,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 				}
 				cardList.setItems(FXCollections.observableArrayList(cardNames));
 				currentCard = this.currentUser.getCards().get(0);
+				cardList.getSelectionModel().select(currentCard.getID() + "");
 				this.update();
 			}
 
@@ -231,21 +233,16 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 			cardNames.add(((Integer) card.getID()).toString());
 		}
 		cardList.setItems(FXCollections.observableArrayList(cardNames));
-		if (this.currentUser.getCards().size() != 0) {
-			currentCard = this.currentUser.getCards().get(0);
-			this.update();
-		}
+		
 		currentCard = this.currentUser.getCards().get(this.currentUser.getCards().size() - 1);
+		cardList.getSelectionModel().select(currentCard.getID() + "");
 		this.update();
-
-	}
-
-	public void startJourneyPush(ActionEvent event) throws IOException {
 
 	}
 
 	public void update() {
 		if (cardList != null) {
+			
 			if (cardList.getSelectionModel().getSelectedItem() != null) {
 				for (TravelCard card : this.currentUser.getCards()) {
 					if ((Integer) card.getID() == Integer.parseInt(cardList.getSelectionModel().getSelectedItem())) {
@@ -258,6 +255,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 					}
 				}
 			}
+			
 		}
 		DecimalFormat doubleDecimal = new DecimalFormat("0.##");
 		cardBalance.setText("$" + doubleDecimal.format(currentCard.getBalance()));
