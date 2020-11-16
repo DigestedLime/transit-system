@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -93,6 +94,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 */
 	public void signOutPush(ActionEvent event) throws IOException {
 		FileHandler.writetoFile(this.users);
+		this.currentUser = null;
 		changeScene(event, "FXMLMenu.FXML");
 	}
 	
@@ -162,7 +164,8 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	
 	
 	public void update() {
-		cardBalance.setText("$" + Float.toString(currentCard.getBalance()));
+		DecimalFormat doubleDecimal = new DecimalFormat("0.##");
+		cardBalance.setText("$" + doubleDecimal.format(currentCard.getBalance()));
 	}
 	
 	@Override
