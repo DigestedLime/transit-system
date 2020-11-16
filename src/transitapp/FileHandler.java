@@ -62,7 +62,6 @@ public class FileHandler {
 	public static void writetoFile(ArrayList<CustomerUser> users) {
 		try {
 		      FileWriter writer = new FileWriter("src/users.txt");
-		      System.out.println(TravelCard.UNIQUE_ID);
 		      writer.write(Integer.toString(TravelCard.UNIQUE_ID));
 		      if (users.size() > 0) {
 		    	  writer.write("\n");

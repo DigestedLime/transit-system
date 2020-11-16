@@ -74,8 +74,9 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @param b
 	 */
 
-	public void setData(CustomerUser user) {
-		this.currentUser = user;
+	public void setData(ArrayList<CustomerUser> users, int userIndex) {
+		this.users = users;
+		this.currentUser = users.get(userIndex);
 		if (this.currentUser != null) {
 			fullName.setText(this.currentUser.getUsername());
 			email.setText(this.currentUser.getEmail());
@@ -109,8 +110,8 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load10Push(ActionEvent event) throws IOException {
-		if (this.current_card != null) {
-			this.current_card.addBalance(10);
+		if (this.currentCard != null) {
+			this.currentCard.addBalance(10);
 			this.update();
 		}
 	}
@@ -121,8 +122,8 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load20Push(ActionEvent event) throws IOException {
-		if (this.current_card != null) {
-			this.current_card.addBalance(20);
+		if (this.currentCard != null) {
+			this.currentCard.addBalance(20);
 			this.update();
 		}
 	}
@@ -133,8 +134,8 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load50Push(ActionEvent event) throws IOException {
-		if (this.current_card != null) {
-			this.current_card.addBalance(50);
+		if (this.currentCard != null) {
+			this.currentCard.addBalance(50);
 			this.update();
 		}
 	}
