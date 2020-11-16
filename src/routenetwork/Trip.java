@@ -29,7 +29,7 @@ public class Trip {
 		}
 	}
 	
-	public void enter_station(Station station, int minutes) {
+	public void enterStation(Station station, int minutes) {
 		if (this.current.getFareType() == "TRAIN") {
 			this.totalCost += 0.5;
 		}
@@ -46,6 +46,16 @@ public class Trip {
 		this.totalMinutes += minutes;
 		this.twoHourPeriods = (this.totalMinutes / 120) + 1;
 	}
+	
+	public void enterStation(Station station, long minutes) {
+		if (minutes > Integer.MAX_VALUE) {
+			this.enterStation(station, Integer.MAX_VALUE - 1);
+		} else {
+			this.enterStation(station, (int) minutes);
+		}
+	}
+	
+	
 	/**
 	 * Sets current station to null thus ending the trip
 	 * 
@@ -67,16 +77,4 @@ public class Trip {
 	public float getCost() {
 		return this.totalCost;
 	}
-	
-	/***
-	// Currently simply caps cost at 6, need to consider time eventually
-	public void addStop(Station stop) {
-		this.route.add(stop);
-		if (this.current.getFareType() == "BUS") {
-			this.total_cost += 2;
-		} else if (this.current.getFareType() == "TRAIN") {
-			this.total_cost += 0.5;
-		}
-		
-	}***/
 }

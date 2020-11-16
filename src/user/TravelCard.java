@@ -1,12 +1,13 @@
 package user;
 
-
+import routenetwork.Journey;
 
 public class TravelCard {
 	private float balance;
-	private boolean cannot_pay;
+	private boolean cannotPay;
 	private boolean suspended;
 	private int id;
+	private Journey currentJourney;
 	
 	public static int UNIQUE_ID = 0;
 	
@@ -14,8 +15,9 @@ public class TravelCard {
 		this.id = UNIQUE_ID;
 		UNIQUE_ID++;
 		
+		this.setCurrentJourney(null);
 		this.balance = 19;
-		this.cannot_pay = false;
+		this.cannotPay = false;
 		this.suspended = false;
 	}
 	
@@ -24,9 +26,9 @@ public class TravelCard {
 		this.balance = balance;
 		this.suspended = suspended;
 		if (this.balance < 0) {
-			this.cannot_pay = true;
+			this.cannotPay = true;
 		} else {
-			this.cannot_pay = false;
+			this.cannotPay = false;
 		}
 	}
 	
@@ -60,20 +62,28 @@ public class TravelCard {
 			return false;
 		}
 		if (this.balance >= 0) {
-			this.cannot_pay = false;
+			this.cannotPay = false;
 		}
 		return true;
 	}
 	
 	public boolean pay(float amount) {
-		if (this.cannot_pay || this.suspended) {
+		if (this.cannotPay || this.suspended) {
 			return false;
 		} 
 		this.balance -= amount;
 		if (this.balance <= 0) {
-			this.cannot_pay = true;
+			this.cannotPay = true;
 		}
 		return true;
+	}
+
+	public Journey getCurrentJourney() {
+		return currentJourney;
+	}
+
+	public void setCurrentJourney(Journey currentJourney) {
+		this.currentJourney = currentJourney;
 	}
 	
 	
