@@ -34,17 +34,14 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	@FXML
 	public ListView<String> cardList;
 	@FXML
-	public ListView<String> depStationList;
-	@FXML
-	public ListView<String> terminusList;
-	@FXML
-	public TextField timeIn;
-	@FXML
-	public TextField timeOut;
-	@FXML
 	public Text balance;
 	@FXML
+	public Text averageTripCost;
+	@FXML
 	public Button status;
+	@FXML
+	public ListView<String> recentTripsList;
+	
 
 	private String dataFullName = "fullName";
 	private String dataEmail = "emailAddress";
@@ -93,6 +90,16 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	public void startJourney(ActionEvent event) throws IOException {
 		// TODO
 	}
+	
+	public void deactivateCardPush(ActionEvent event) throws IOException {
+		// TODO
+	}
+	
+	public void removeCardPush(ActionEvent event) throws IOException {
+		// TODO
+	}
+	
+	public
 	
 	/**
 	 * update lists and statuses and balance here, and then call this method in login controller FXMLLoginController.loginButtonPush()
