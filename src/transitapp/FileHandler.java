@@ -41,6 +41,7 @@ public class FileHandler {
 				
 				
 				int num_cards = Integer.parseInt(line_elements[name_words + 3]);
+				int num_trips = Integer.parseInt(line_elements[name_words + 4]);
 				for (int i = 0; i < num_cards; i++) {
 					line = sc.nextLine();
 					line_elements = line.split(" ");
@@ -51,6 +52,11 @@ public class FileHandler {
 					}
 					float balance = Float.parseFloat(line_elements[2]);
 					current_user.addExistingCard(id, balance, is_susp);
+				}
+				
+				for (int i = 0; i < num_trips; i++) {
+					line = sc.nextLine();
+					current_user.addTripString(line);
 				}
 				users.add(current_user);
 			}
@@ -63,13 +69,15 @@ public class FileHandler {
 	public static void writetoFile(ArrayList<CustomerUser> users) {
 		try {
 		      FileWriter writer = new FileWriter("src/users.txt");
-		      writer.write("# FORMAT: First line after this comment represents the current counter for"
-		      		+ " TravelCard.UNIQUE_ID so that id numbers stay unique. The format after is for "
-		      		+ "a user: <number of words in name> <name> <password> <email> "
-		      		+ "<number of cards of user> For each card of the user, there is then a line "
-		      		+ "after the user line in format of <unique_id> <\"t\" if suspended, \"f\" "
-		      		+ "otherwise\"> <card balance>. After all cards of one user are shown, the next "
-		      		+ "line is the next user\n");
+		      writer.write("# FORMAT: First line after this comment represents the current counter "
+		      		+ "for TravelCard.UNIQUE_ID so that id numbers stay unique. The format after is "
+		      		+ "for a user: <number of words in name> <name> <password> <email> <number of "
+		      		+ "cards of user> <number of recent trips>. For each card of the user, there is "
+		      		+ "then a line after the user line in format of <unique_id> <\"t\" if suspended, "
+		      		+ "\"f\" otherwise\"> <card balance>. After all cards of one user are shown, the "
+		      		+ "next line is the first trip, which is in the same format as recent trips in "
+		      		+ "CustomerUser. After all trips are displayed, the next line is the next user, "
+		      		+ "assuming there is one.\n");
 		      writer.write(Integer.toString(TravelCard.UNIQUE_ID));
 		      if (users.size() > 0) {
 		    	  writer.write("\n");
@@ -78,7 +86,8 @@ public class FileHandler {
 		    	  CustomerUser user = users.get(i);
 		    	  writer.write(Integer.toString(user.getUsername().split(" ").length));
 		    	  writer.write(" " + user.getUsername() + " " + user.getPassword() +
-		    			  " " + user.getEmail() + " " + user.getCards().size());
+		    			  " " + user.getEmail() + " " + user.getCards().size() +
+		    			  " " + user.getTrips().size());
 		    	  if (user.getCards().size() > 0) {
 		    		  writer.write("\n");
 		    	  }
@@ -92,6 +101,16 @@ public class FileHandler {
 		    					  Float.toString(card.getBalance()));
 		    		  }
 		    		  if (j < user.getCards().size() - 1) {
+		    			  writer.write("\n");
+		    		  }
+		    	  }
+		    	  
+		    	  if (user.getTrips().size() > 0) {
+		    		  writer.write("\n");
+		    	  }
+		    	  for (int j = 0; j < user.getTrips().size(); j++) {
+		    		  writer.write(user.getTrips().get(j));
+		    		  if (j < user.getTrips().size() - 1) {
 		    			  writer.write("\n");
 		    		  }
 		    	  }
