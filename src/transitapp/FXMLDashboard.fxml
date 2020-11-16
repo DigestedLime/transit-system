@@ -63,17 +63,17 @@
             <Font name="Segoe UI" size="47.0" />
          </font>
       </Text>
-      <Button layoutX="471.0" layoutY="67.0" mnemonicParsing="false" onAction="#pushLoad10" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $10">
+      <Button layoutX="471.0" layoutY="67.0" mnemonicParsing="false" onAction="#load10Push" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $10">
          <font>
             <Font name="Segoe UI Semilight" size="26.0" />
          </font>
       </Button>
-      <Button layoutX="703.0" layoutY="67.0" mnemonicParsing="false" onAction="#pushLoad20" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $20">
+      <Button layoutX="703.0" layoutY="67.0" mnemonicParsing="false" onAction="#load20Push" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $20">
          <font>
             <Font name="Segoe UI Semilight" size="26.0" />
          </font>
       </Button>
-      <Button layoutX="935.0" layoutY="67.0" mnemonicParsing="false" onAction="#pushLoad50" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $50">
+      <Button layoutX="935.0" layoutY="67.0" mnemonicParsing="false" onAction="#load50Push" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $50">
          <font>
             <Font name="Segoe UI Semilight" size="26.0" />
          </font>

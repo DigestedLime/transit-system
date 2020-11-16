@@ -23,7 +23,7 @@ import user.CustomerUser;
  * button event that happens would cause change the scene to login, settings or
  * register.
  * 
- * @author Lap Khang Tran
+ * @author
  *
  */
 public class FXMLMenuController extends ControllerParent implements Initializable {
