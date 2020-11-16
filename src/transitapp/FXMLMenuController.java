@@ -59,7 +59,9 @@ public class FXMLMenuController extends ControllerParent implements Initializabl
 	 */
 	public void settingsButtonPush(ActionEvent event) throws IOException {
 
-		changeScene(event, "FXMLSettings.FXML");
+		FXMLLoader loader = changeScene(event, "FXMLSettings.FXML");
+		FXMLSettingsController settings = loader.getController();
+		settings.setData(this.users);
 	}
 
 	/**

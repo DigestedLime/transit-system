@@ -82,7 +82,7 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 			}
 		}
 		
-		if (!email_used) {
+		if (!email_used && email.getText().trim().length() > 0 && password.getText().trim().length() > 0) {
 			CustomerUser temp = new CustomerUser(fullName.getText(), password.getText(), email.getText());
 			temp.addCard();
 			this.users.add(temp);

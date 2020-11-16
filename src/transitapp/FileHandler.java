@@ -18,6 +18,7 @@ public class FileHandler {
 		Scanner sc;
 		try {
 			sc = new Scanner(new File("src/users.txt"));
+			sc.nextLine();
 			
 			String line = sc.nextLine();
 			String[] line_elements = line.split(" ");
@@ -62,6 +63,13 @@ public class FileHandler {
 	public static void writetoFile(ArrayList<CustomerUser> users) {
 		try {
 		      FileWriter writer = new FileWriter("src/users.txt");
+		      writer.write("# FORMAT: First line after this comment represents the current counter for"
+		      		+ " TravelCard.UNIQUE_ID so that id numbers stay unique. The format after is for "
+		      		+ "a user: <number of words in name> <name> <password> <email> "
+		      		+ "<number of cards of user> For each card of the user, there is then a line "
+		      		+ "after the user line in format of <unique_id> <\"t\" if suspended, \"f\" "
+		      		+ "otherwise\"> <card balance>. After all cards of one user are shown, the next "
+		      		+ "line is the next user\n");
 		      writer.write(Integer.toString(TravelCard.UNIQUE_ID));
 		      if (users.size() > 0) {
 		    	  writer.write("\n");

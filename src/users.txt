@@ -1,4 +1,5 @@
-96
+# FORMAT: First line after this comment represents the current counter for TravelCard.UNIQUE_ID so that id numbers stay unique. The format after is for a user: <number of words in name> <name> <password> <email> <number of cards of user> For each card of the user, there is then a line after the user line in format of <unique_id> <"t" if suspended, "f" otherwise"> <card balance>. After all cards of one user are shown, the next line is the next user
+103
 2 Rehmat Munir asd asd@asd 6
 51 t 10399.0
 57 t 159.0
@@ -6,12 +7,9 @@
 87 f 19.0
 90 f 19.0
 92 f 19.0
-3 Rehmat The Munir password test 3
-5 f 10.0
+3 Rehmat The Munir password test 2
 6 f 15.0
 7 f 15.0
-1    1
-64 f 19.0
 2 Aaron Hong pass me@aaron.pm 4
 69 t 29.0
 70 t 19.0
