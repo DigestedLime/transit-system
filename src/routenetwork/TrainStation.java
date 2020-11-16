@@ -1,7 +1,5 @@
 package routenetwork;
 
-import java.util.ArrayList;
-
 public class TrainStation extends Station {
 
 	private String fareType = "TRAIN";
@@ -14,7 +12,6 @@ public class TrainStation extends Station {
 		this.linkedStns.add(station);
 		station.addTrainStation(this);
 	}
-	
 	
 	@Override
 	public String getFareType() {

@@ -1,7 +1,5 @@
 package routenetwork;
 
-import java.util.ArrayList;
-
 public class BusStation extends Station {
 
 	private String fareType = "BUS";

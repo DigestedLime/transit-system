@@ -31,7 +31,6 @@ public class FileHandler {
 				String name = "";
 				for (int i = 0; i < name_words; i++) {
 					name += line_elements[i + 1] + " ";
-					
 				}
 				name = name.substring(0, name.length() - 1);
 				

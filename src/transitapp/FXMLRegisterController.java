@@ -1,7 +1,5 @@
 package transitapp;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -11,15 +9,8 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.collections.*;
-import javafx.scene.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.stage.*;
 import user.CustomerUser;
-import user.TravelCard;
 
 /**
  * This class is responsible for registering a new user. It would take in the full name of the user,

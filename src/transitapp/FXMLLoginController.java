@@ -49,7 +49,6 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 	 * @throws IOException
 	 */
 	public void backButtonPush(ActionEvent event) throws IOException {
-		
 		FXMLLoader loader = changeScene(event, "FXMLMenu.FXML");
 		FXMLMenuController menu = loader.getController();
 		menu.setData(this.users);
@@ -61,7 +60,6 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 	 * @throws IOException
 	 */
 	public void noAccountButton(ActionEvent event) throws IOException {
-
 		FXMLLoader loader = changeScene(event, "FXMLRegister.FXML");
 		FXMLRegisterController register = loader.getController();
 		register.setData(this.users);
@@ -76,7 +74,6 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 	 * @throws IOException
 	 */
 	public void loginButtonPush(ActionEvent event) throws IOException {
-		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDashboard.FXML"));
 		Parent dashParent = loader.load();
 		FXMLDashboardController temp = loader.getController();
