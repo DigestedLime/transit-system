@@ -94,7 +94,11 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 */
 	public void signOutPush(ActionEvent event) throws IOException {
 		FileHandler.writetoFile(this.users);
-		changeScene(event, "FXMLMenu.FXML");
+		
+		
+		FXMLLoader loader = changeScene(event, "FXMLMenu.FXML");
+		FXMLMenuController menu = loader.getController();
+		menu.setData(this.users);
 	}
 	
 	/**
