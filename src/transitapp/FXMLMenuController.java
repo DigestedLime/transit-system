@@ -78,6 +78,8 @@ public class FXMLMenuController extends ControllerParent implements Initializabl
 	 * Method that needs to be in the class from implementing Initializable.
 	 */
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {}
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+	}
 
 }

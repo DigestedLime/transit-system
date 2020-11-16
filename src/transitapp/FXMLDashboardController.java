@@ -55,15 +55,14 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	@FXML
 	public ListView<String> cardList;
 	@FXML
-	public ListView<String> departingStation;
+	public Text balance;
 	@FXML
-	public ListView<String> terminusStation;
-	@FXML
-	public TextField timeIn;
-	@FXML
-	public TextField timeOut;
+	public Text averageTripCost;
 	@FXML
 	public Button status;
+	@FXML
+	public ListView<String> recentTripsList;
+	
 
 	private String dataFullName = "fullName";
 	private String dataEmail = "emailAddress";
@@ -148,6 +147,16 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 			this.update();
 		}
 	}
+	
+	public void deactivateCardPush(ActionEvent event) throws IOException {
+		// TODO
+	}
+	
+	public void removeCardPush(ActionEvent event) throws IOException {
+		// TODO
+	}
+	
+	public
 	
 	/**
 	 * This method adds a new card for the current user.
