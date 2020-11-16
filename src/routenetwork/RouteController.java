@@ -42,6 +42,7 @@ public class RouteController {
 			currStn= this.getStation(startIndex);
 		} while (currStn != startStation && currStn != endStation);
 		for (int i = startIndex; i < this.routeLength(); i++) {
+			currStn = this.getStation(i);
 			if (currStn == startStation || currStn == endStation) {
 				endIndex = i;
 			}

@@ -22,6 +22,8 @@ public class Main {
 		subwayLine.addStation(trainStations[2]);
 		trainStations[2].addBusStation(new BusStation("22A"));
 		
+		System.out.println(subwayLine.stationDistance(subwayLine.getStation(0), subwayLine.getStation(1)));
+		
 		// ==========  TRAVERSAL ===========
 		//  Kipling ------> Islington ----> Royal York
 		//    | 	            |               |
@@ -33,6 +35,22 @@ public class Main {
 		// }
 		
 		System.out.println(subwayLine);
+		
+		TrainStation startStation = subwayLine.getStation(0);
+		TrainStation endStation = subwayLine.getStation(1);
+		int startIndex = -1; int endIndex = -1;
+		TrainStation currStn;
+		do {
+			startIndex++;
+			currStn= subwayLine.getStation(startIndex);
+		} while (currStn != startStation && currStn != endStation);
+		for (int i = startIndex; i < subwayLine.routeLength(); ++i) {
+			currStn = subwayLine.getStation(i);
+			if (currStn == startStation || currStn == endStation) {
+				endIndex = i;
+			}
+		}
+		System.out.println(startIndex + "hello" + endIndex);
 
 	}
 	
