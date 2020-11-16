@@ -83,7 +83,9 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 		}
 		
 		if (!email_used) {
-			this.users.add(new CustomerUser(fullName.getText(), password.getText(), email.getText()));
+			CustomerUser temp = new CustomerUser(fullName.getText(), password.getText(), email.getText());
+			temp.addCard();
+			this.users.add(temp);
 			FileHandler.writetoFile(this.users);
 			FXMLLoader loader = changeScene(event, "FXMLDashboard.FXML");
 			FXMLDashboardController dashboard = loader.getController();
