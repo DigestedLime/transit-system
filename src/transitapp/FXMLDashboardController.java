@@ -81,6 +81,11 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 		if (this.currentUser != null) {
 			fullName.setText(this.currentUser.getUsername());
 			email.setText(this.currentUser.getEmail());
+			ArrayList<String> cardNames = new ArrayList<String>();
+			for (TravelCard card: this.currentUser.getCards()) {
+				cardNames.add(((Integer) card.getID()).toString());
+			}
+			cardList.setItems(FXCollections.observableArrayList(cardNames));
 			if (this.currentUser.getCards().size() != 0) {
 				currentCard = this.currentUser.getCards().get(0);
 				this.update();

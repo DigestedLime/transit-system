@@ -6,7 +6,7 @@ public abstract class Station {
 
 	private String name;
 	private String fareType;
-	private ArrayList<Station> linkedStns = new ArrayList<Station>();
+	protected ArrayList<Station> linkedStns = new ArrayList<Station>();
 	
 	public Station(String name) {
 		this.setName(name);
