@@ -1,5 +1,6 @@
 package transitapp;
 
+import java.awt.List;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -9,6 +10,8 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import backendapi.RouteMap;
 import javafx.collections.*;
 import javafx.scene.*;
 import javafx.scene.control.Button;
@@ -17,6 +20,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.*;
+import routenetwork.BusStation;
+import routenetwork.Journey;
+import routenetwork.RouteController;
+import routenetwork.Station;
+import routenetwork.TrainStation;
 import user.CustomerUser;
 import user.TravelCard;
 import user.User;
@@ -31,9 +39,11 @@ import user.User;
  */
 public class FXMLDashboardController extends ControllerParent implements Initializable {
 	
-	public CustomerUser current_user;
+
 	public ArrayList<CustomerUser> users;
-	public TravelCard current_card;
+	public CustomerUser currentUser;
+	public TravelCard currentCard;
+	public RouteController routeController;
 	
 	@FXML
 	public Text fullName;
@@ -42,8 +52,18 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	@FXML
 	public Text cardBalance;
 	@FXML
-	public ListView cardList;
-	
+	public ListView<String> cardList;
+	@FXML
+	public ListView<String> departingStation;
+	@FXML
+	public ListView<String> terminusStation;
+	@FXML
+	public TextField timeIn;
+	@FXML
+	public TextField timeOut;
+	@FXML
+	public Button status;
+
 	private String dataFullName = "fullName";
 	private String dataEmail = "emailAddress";
 	
@@ -53,14 +73,16 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @param a
 	 * @param b
 	 */
-	public void setData(ArrayList<CustomerUser> users, int index) {
-		this.users = users;
-		this.current_user = users.get(index);
-		fullName.setText(this.current_user.getUsername());
-		email.setText(this.current_user.getEmail());
-		if (this.current_user.getCards().size() != 0) {
-			current_card = this.current_user.getCards().get(0);
-			this.update();
+
+	public void setData(CustomerUser user) {
+		this.currentUser = user;
+		if (this.currentUser != null) {
+			fullName.setText(this.currentUser.getUsername());
+			email.setText(this.currentUser.getEmail());
+			if (this.currentUser.getCards().size() != 0) {
+				currentCard = this.currentUser.getCards().get(0);
+				this.update();
+			}
 		}
 	}
 	
@@ -72,6 +94,13 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	public void signOutPush(ActionEvent event) throws IOException {
 		FileHandler.writetoFile(this.users);
 		changeScene(event, "FXMLMenu.FXML");
+	}
+	
+	/**
+	 * update lists and statuses and balance here, and then call this method in login controller FXMLLoginController.loginButtonPush()
+	 */
+	public void updateLists() {
+		// TODO
 	}
 	
 	/**
@@ -116,14 +145,24 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void addCardPush(ActionEvent event) throws IOException {
-		this.current_user.addCard();
-		current_card = this.current_user.getCards().get(this.current_user.getCards().size() - 1);
+		this.currentUser.addCard();
+		currentCard = this.currentUser.getCards().get(this.currentUser.getCards().size() - 1);
 		this.update();
 
 	}
 	
+	public void startJourneyPush(ActionEvent event) throws IOException {
+		String depart = departingStation.getSelectionModel().getSelectedItem();
+		String end = terminusStation.getSelectionModel().getSelectedItem();
+		System.out.println("Depart from: " + depart + ", End at: " + end);
+		Journey j = new Journey(depart, end, this.routeController);
+		this.currentCard.pay((float) j.calculateFare());
+		this.update();
+	}
+	
+	
 	public void update() {
-		cardBalance.setText("$" + Float.toString(current_card.getBalance()));
+		cardBalance.setText("$" + Float.toString(currentCard.getBalance()));
 	}
 	
 	@Override
@@ -136,10 +175,18 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	/**
 	 * Method that needs to be in the class from implementing Initializable.
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-
+		RouteMap temp = new RouteMap();
+		temp.initialize("subway_map.txt");
+		this.routeController = temp.getRouteMap();
+		
+		departingStation.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
+		terminusStation.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
+		
+		
+		
 	}
 
 }
