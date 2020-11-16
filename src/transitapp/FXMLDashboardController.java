@@ -80,8 +80,10 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load10Push(ActionEvent event) throws IOException {
-		this.current_card.addBalance(10);
-		this.update();
+		if (this.current_card != null) {
+			this.current_card.addBalance(10);
+			this.update();
+		}
 	}
 	
 	/**
@@ -90,8 +92,10 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load20Push(ActionEvent event) throws IOException {
-		this.current_card.addBalance(20);
-		this.update();
+		if (this.current_card != null) {
+			this.current_card.addBalance(20);
+			this.update();
+		}
 	}
 	
 	/**
@@ -100,8 +104,10 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load50Push(ActionEvent event) throws IOException {
-		this.current_card.addBalance(50);
-		this.update();
+		if (this.current_card != null) {
+			this.current_card.addBalance(50);
+			this.update();
+		}
 	}
 	
 	/**

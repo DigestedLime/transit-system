@@ -71,7 +71,6 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 	 * @throws IOException
 	 */
 	public void regButtonPush(ActionEvent event) throws IOException {
-		System.out.println(fullName.getText() + ", " + email.getText() + ", " + password.getText());
 		boolean email_used = false;
 		for (int i = 0; i < this.users.size(); i++) {
 			if (this.users.get(i).getEmail().equals(email.getText())) {
@@ -82,6 +81,9 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 		if (!email_used) {
 			this.users.add(new CustomerUser(fullName.getText(), password.getText(), email.getText()));
 			FileHandler.writetoFile(this.users);
+			FXMLLoader loader = changeScene(event, "FXMLDashboard.FXML");
+			FXMLDashboardController dashboard = loader.getController();
+			dashboard.setData(this.users, this.users.size() - 1);
 		} else {
 			/* TODO: Might make it clear via message that it didn't work
 			 * 
