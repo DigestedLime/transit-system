@@ -8,7 +8,7 @@ public class TravelCard {
 	private boolean suspended;
 	private int id;
 	
-	public static int UNIQUE_ID;
+	public static int UNIQUE_ID = 0;
 	
 	public TravelCard() {
 		this.id = UNIQUE_ID;
@@ -19,7 +19,7 @@ public class TravelCard {
 		this.suspended = false;
 	}
 	
-	public TravelCard(int id, int balance, boolean suspended) {
+	public TravelCard(int id, float balance, boolean suspended) {
 		this.id = id;
 		this.balance = balance;
 		this.suspended = suspended;
@@ -36,6 +36,10 @@ public class TravelCard {
 	
 	public int getID() {
 		return this.id;
+	}
+	
+	public boolean isSuspended() {
+		return this.suspended;
 	}
 	
 	public void suspendCard() {

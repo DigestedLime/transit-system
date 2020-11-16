@@ -30,6 +30,10 @@ public class CustomerUser extends User {
 		this.trips.add(0, trip);
 	}
 	
+	public boolean logIn(String password, String email) {
+		return super.logIn(password) && this.email.equals(email);
+	}
+	
 	public String getEmail() {
 		return this.email;
 	}
@@ -48,7 +52,7 @@ public class CustomerUser extends User {
 		return newcard.getID();
 	}
 	
-	public void addExistingCard(int id, int balance, boolean suspended) {
+	public void addExistingCard(int id, float balance, boolean suspended) {
 		this.cards.add(new TravelCard(id, balance, suspended));
 	}
 	

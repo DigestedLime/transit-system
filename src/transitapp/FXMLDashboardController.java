@@ -39,6 +39,8 @@ import user.User;
  */
 public class FXMLDashboardController extends ControllerParent implements Initializable {
 	
+
+	public ArrayList<CustomerUser> users;
 	public CustomerUser currentUser;
 	public TravelCard currentCard;
 	public RouteController routeController;
@@ -71,8 +73,9 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @param a
 	 * @param b
 	 */
-	public void setData(CustomerUser current_user) {
-		this.currentUser = current_user;
+
+	public void setData(CustomerUser user) {
+		this.currentUser = user;
 		if (this.currentUser != null) {
 			fullName.setText(this.currentUser.getUsername());
 			email.setText(this.currentUser.getEmail());
@@ -89,7 +92,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void signOutPush(ActionEvent event) throws IOException {
-		setData(null); //TODO: THIS WILL ERROR
+		FileHandler.writetoFile(this.users);
 		changeScene(event, "FXMLMenu.FXML");
 	}
 	
@@ -106,8 +109,10 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load10Push(ActionEvent event) throws IOException {
-		this.currentCard.addBalance(10);
-		this.update();
+		if (this.current_card != null) {
+			this.current_card.addBalance(10);
+			this.update();
+		}
 	}
 	
 	/**
@@ -116,8 +121,10 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load20Push(ActionEvent event) throws IOException {
-		this.currentCard.addBalance(20);
-		this.update();
+		if (this.current_card != null) {
+			this.current_card.addBalance(20);
+			this.update();
+		}
 	}
 	
 	/**
@@ -126,8 +133,10 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @throws IOException
 	 */
 	public void load50Push(ActionEvent event) throws IOException {
-		this.currentCard.addBalance(50);
-		this.update();
+		if (this.current_card != null) {
+			this.current_card.addBalance(50);
+			this.update();
+		}
 	}
 	
 	/**
@@ -154,6 +163,12 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	
 	public void update() {
 		cardBalance.setText("$" + Float.toString(currentCard.getBalance()));
+	}
+	
+	@Override
+	public void exitButton(ActionEvent event) throws IOException {
+		FileHandler.writetoFile(this.users);
+		super.exitButton(event);
 	}
 	
 	
