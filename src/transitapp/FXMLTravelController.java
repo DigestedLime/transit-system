@@ -26,10 +26,8 @@ import user.CustomerUser;
 import user.TravelCard;
 
 /**
- * This class is responsible for the user travelling with card information, and
+ * This class is responsible for the user traveling with card information, and
  * giving a status for the user to know if the trip was successful.
- * 
- * @author
  *
  */
 public class FXMLTravelController extends ControllerParent implements Initializable {
@@ -53,25 +51,44 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 
 	public RouteController routeController;
 	public ArrayList<CustomerUser> users;
-	private HashMap<Integer, TravelCard> idToCard = new HashMap<Integer, TravelCard>();
+	private HashMap<Integer, TravelCard> idToCard;
 	private HashMap<String, Station> nameToStations;
-	
+	private HashMap<TravelCard, CustomerUser> cardToUser;
+
 	/**
-	 * @param users passes the list of all CustomerUsers in the system to this controller
+	 * Populates the data for this class.
+	 * 
+	 * @param users passes the list of all CustomerUsers in the system to this
+	 *              controller
 	 */
 	public void setData(ArrayList<CustomerUser> users) {
+		idToCard = new HashMap<>();
+		cardToUser = new HashMap<>();
 		this.users = users;
 		for (CustomerUser user : this.users) {
 			for (TravelCard card : user.getCards()) {
 				this.idToCard.put(card.getID(), card);
+				this.cardToUser.put(card, user);
 			}
 		}
 	}
 
-	public Station findStation(String a) {
-		return this.nameToStations.get(a);
+	/**
+	 * Returns the station object that corresponds to this name.
+	 * 
+	 * @param name of a station
+	 * @return return the station corresponding to this name.
+	 */
+	public Station findStation(String name) {
+		return this.nameToStations.get(name);
 	}
 
+	/**
+	 * This method ends a journey with the selected inputs.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void journeyOffPush(ActionEvent event) throws IOException {
 		if (!this.cardID.getText().matches("\\d+")) {
 			status.setText("Error: Card IDs must be numeric.");
@@ -93,17 +110,20 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 						currentJourney.setRenewTime(prevJourney.getRenewTime());
 					}
 				}
-				System.out.println(currentCard.pay((float) currentJourney.tripFare()));
-				System.out.println(currentCard.getBalance());
-				System.out.println(currentJourney.tripFare());
-				System.out.println(currentJourney.calculateFare());
+				this.cardToUser.get(currentCard)
+						.addTripString("[" + currentCard.getID() + "] " + currentJourney.toString());
 			} catch (Exception e) {
 				status.setText("Error: Invalid date.");
-				e.printStackTrace();
 			}
 		}
 	}
 
+	/**
+	 * This method starts a journey with the selected inputs.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void journeyPush(ActionEvent event) throws IOException {
 		if (!this.cardID.getText().matches("\\d+")) {
 			status.setText("Error: Card IDs must be numeric.");
@@ -119,21 +139,29 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 				Journey currentJourney = new Journey(this.routeController);
 				currentJourney.tapOn(this.findStation(this.stationList.getSelectionModel().getSelectedItem()),
 						currTime);
-				System.out.println(currentJourney);
-				System.out.println(currentCard);
 				currentCard.addJourney(currentJourney);
-				System.out.println(currentCard.getBalance());
 			} catch (Exception e) {
 				status.setText("Error: Invalid date.");
-				e.printStackTrace();
 			}
 		}
 	}
 
+	/**
+	 * This method returns the TravelCard associated to this id.
+	 * 
+	 * @param id of a card
+	 * @return returns null if the id is not valid.
+	 */
 	private TravelCard getCardUsingID(String id) {
 		return this.idToCard.get(Integer.parseInt(id));
 	}
 
+	/**
+	 * This method changes the scene to the menu screen.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void backBtnPush(ActionEvent event) throws IOException {
 		FXMLLoader loader = changeScene(event, "FXMLMenu.FXML");
 		FXMLMenuController temp = loader.getController();
@@ -145,13 +173,12 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		RouteMap map = new RouteMap();
+		map.initialize("subway_map.txt");
+		this.routeController = map.getRouteMap();
 
-		RouteMap temp = new RouteMap();
-		temp.initialize("subway_map.txt");
-		this.routeController = temp.getRouteMap();
 
 		this.stationList.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));   
 		this.nameToStations = this.routeController.getNameToStations();
-
 	}
 }

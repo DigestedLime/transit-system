@@ -16,7 +16,6 @@ import user.CustomerUser;
 public class FXMLAdminController extends ControllerParent implements Initializable {
 
 	public ArrayList<CustomerUser> users;
-
 	@FXML
 	public Text revenue;
 	@FXML

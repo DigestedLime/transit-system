@@ -3,24 +3,25 @@ package routenetwork;
 import java.util.ArrayList;
 
 /**
- * 
- * Abstract class representing a station.
- * A station has a name, fareType, and list of stations it is attached to
+ * Abstract class representing a station. A station has a name, fareType, and
+ * list of stations it is attached to
  */
 public abstract class Station {
-	
+
 	private String name;
 	private String fareType;
 	protected ArrayList<Station> linkedStns = new ArrayList<Station>();
-	
+
 	/**
 	 * Constructs a new station, setting the name for it.
+	 * 
 	 * @param name
 	 */
-	public Station(String name) {
+	public Station(String name, String fareType) {
 		this.setName(name);
+		this.setFareType(fareType);
 	}
-	
+
 	/**
 	 * 
 	 * @return the name of the station
@@ -28,7 +29,7 @@ public abstract class Station {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * 
 	 * @param name new name to change station to.
@@ -37,24 +38,26 @@ public abstract class Station {
 		// Stations cannot be renamed? Possibly change to private at a later stage.
 		this.name = name;
 	}
-	
+
 	/**
 	 * @return stations linked to this one
 	 */
 	public ArrayList<Station> getLinkedStations() {
 		return this.linkedStns;
 	}
-	
+
 	/**
 	 * @return This stations fare type
 	 */
 	public String getFareType() {
 		return this.fareType;
 	}
-	
-	//When printing, just show the stations name
-	public String toString() {
-		return this.getName();
+
+	/**
+	 * 
+	 * @param fareType fare to set fareType to.
+	 */
+	private void setFareType(String fareType) {
+		this.fareType = fareType;
 	}
-	
 }
