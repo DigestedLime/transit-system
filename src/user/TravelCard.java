@@ -1,5 +1,7 @@
 package user;
 
+import java.util.ArrayList;
+
 import routenetwork.Journey;
 
 public class TravelCard {
@@ -7,7 +9,7 @@ public class TravelCard {
 	private boolean cannotPay;
 	private boolean suspended;
 	private int id;
-	private Journey currentJourney;
+	private ArrayList<Journey> journeys;
 	
 	public static int UNIQUE_ID = 0;
 	
@@ -15,7 +17,7 @@ public class TravelCard {
 		this.id = UNIQUE_ID;
 		UNIQUE_ID++;
 		
-		this.setCurrentJourney(null);
+		this.journeys = new ArrayList<>();
 		this.balance = 19;
 		this.cannotPay = false;
 		this.suspended = false;
@@ -25,6 +27,8 @@ public class TravelCard {
 		this.id = id;
 		this.balance = balance;
 		this.suspended = suspended;
+		
+		this.journeys = new ArrayList<>();
 		if (this.balance < 0) {
 			this.cannotPay = true;
 		} else {
@@ -69,6 +73,8 @@ public class TravelCard {
 	
 	public boolean pay(float amount) {
 		if (this.cannotPay || this.suspended) {
+			System.out.println("Suspended: " + this.suspended);
+			System.out.println("Cannot Pay: " + this.cannotPay);
 			return false;
 		} 
 		this.balance -= amount;
@@ -79,13 +85,29 @@ public class TravelCard {
 	}
 
 	public Journey getCurrentJourney() {
-		return currentJourney;
-	}
-
-	public void setCurrentJourney(Journey currentJourney) {
-		this.currentJourney = currentJourney;
+		if (this.journeys.isEmpty()) {
+			return null;
+		}
+		return this.journeys.get(this.journeys.size() - 1);
 	}
 	
+	public void addJourney(Journey journey) {
+		this.journeys.add(journey);
+	}
 	
+	public Journey getPrevJourney() {
+		if (this.journeys.size() > 1) {
+			return this.journeys.get(this.journeys.size() - 2);
+		}
+		return null;
+	}
+	
+	public boolean cannotPay() {
+		return this.cannotPay;
+	}
+	
+	public String toString() {
+		return ((Integer)this.id).toString();
+	}
 	
 }

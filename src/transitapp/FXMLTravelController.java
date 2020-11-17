@@ -5,6 +5,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -75,13 +76,28 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 		} else if (!this.idToCard.containsKey(Integer.parseInt(this.cardID.getText()))) {
 			status.setText("Error: Invalid Card.");
 		} else {
-			// Not implemented
 			try {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
-				LocalDateTime temp = LocalDateTime.parse(time.getText(), formatter);
-				Journey currentJourney = this.getCardUsingID(this.cardID.getText()).getCurrentJourney();
+				LocalDateTime currTime = LocalDateTime.parse(time.getText(), formatter);
+				TravelCard currentCard = this.getCardUsingID(this.cardID.getText());
+				Journey currentJourney = currentCard.getCurrentJourney();
+				currentJourney.tapOff(this.findStation(this.stationList.getSelectionModel().getSelectedItem()),
+						currTime);
+				Journey prevJourney = currentCard.getPrevJourney();
+				if (prevJourney != null) {
+					long durationMinutes = ChronoUnit.MINUTES.between(prevJourney.getStartTime(), currTime);
+					if (durationMinutes < 120) {
+						currentJourney.setCurrentFare(0.0);
+						currentJourney.setRenewTime(prevJourney.getRenewTime());
+					}
+				}
+				System.out.println(currentCard.pay((float) currentJourney.tripFare()));
+				System.out.println(currentCard.getBalance());
+				System.out.println(currentJourney.tripFare());
+				System.out.println(currentJourney.calculateFare());
 			} catch (Exception e) {
-				status.setText("Error: Invalid Date");
+				status.setText("Error: Invalid date.");
+				e.printStackTrace();
 			}
 		}
 	}
@@ -90,33 +106,24 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 		if (!this.cardID.getText().matches("\\d+")) {
 			status.setText("Error: Card IDs must be numeric.");
 		} else if (!this.idToCard.containsKey(Integer.parseInt(this.cardID.getText()))) {
-			status.setText("Error: Invalid Card.");
-
+			status.setText("Error: Invalid card.");
+		} else if (this.idToCard.get(Integer.parseInt(this.cardID.getText())).cannotPay()) {
+			status.setText("Error: Please load your card.");
 		} else {
 			try {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm");
-				LocalDateTime temp = LocalDateTime.parse(time.getText(), formatter);
-				Journey currentJourney = this.getCardUsingID(this.cardID.getText()).getCurrentJourney();
-				if (currentJourney == null) {
-					currentJourney = new Journey(temp,
-							this.findStation(this.stationList.getSelectionModel().getSelectedItem()));
-				} else if (currentJourney.isTripEnded()) {
-					currentJourney.tapOn(this.findStation(this.stationList.getSelectionModel().getSelectedItem()),
-							temp);
-				} else {
-					// continue journey/end journey
-				}
-
-				// String depart = departingStation.getSelectionModel().getSelectedItem();
-				// String end = terminusStation.getSelectionModel().getSelectedItem();
-				// System.out.println("Depart from: " + depart + ", End at: " + end);
-				// Journey j = new Journey(depart, end, this.routeController);
-				// String id = this.cardID.getText();
-				// TravelCard currentCard = getCardUsingID(id);
-				// currentCard.pay((float) j.calculateFare());
-				System.out.println(currentJourney.tripFare());
+				LocalDateTime currTime = LocalDateTime.parse(time.getText(), formatter);
+				TravelCard currentCard = this.getCardUsingID(this.cardID.getText());
+				Journey currentJourney = new Journey(this.routeController);
+				currentJourney.tapOn(this.findStation(this.stationList.getSelectionModel().getSelectedItem()),
+						currTime);
+				System.out.println(currentJourney);
+				System.out.println(currentCard);
+				currentCard.addJourney(currentJourney);
+				System.out.println(currentCard.getBalance());
 			} catch (Exception e) {
-				status.setText("Error: Invalid Date");
+				status.setText("Error: Invalid date.");
+				e.printStackTrace();
 			}
 		}
 	}
@@ -129,7 +136,6 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 		FXMLLoader loader = changeScene(event, "FXMLMenu.FXML");
 		FXMLMenuController temp = loader.getController();
 		temp.setData(this.users);
-
 	}
 
 //	public void update() {
