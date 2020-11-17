@@ -63,7 +63,7 @@ public class FXMLMenuController extends ControllerParent implements Initializabl
 	
 	public void travelButtonPush(ActionEvent event) throws IOException {
 		FXMLLoader loader = changeScene(event, "FXMLTravel.FXML");
-		FXMLRegisterController temp = loader.getController();
+		FXMLTravelController temp = loader.getController();
 		temp.setData(this.users);
 	}
 	

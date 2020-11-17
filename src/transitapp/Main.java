@@ -35,6 +35,7 @@ public class Main extends Application{
 		Parent menuParent = loader.load();
 		
 		FXMLMenuController temp = loader.getController();
+		
 		temp.setData(users);
 		
 		Scene scene = new Scene(menuParent);
