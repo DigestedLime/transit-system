@@ -54,11 +54,12 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 	private HashMap<Integer, TravelCard> idToCard;
 	private HashMap<String, Station> nameToStations;
 	private HashMap<TravelCard, CustomerUser> cardToUser;
-	
+
 	/**
 	 * Populates the data for this class.
 	 * 
-	 * @param users passes the list of all CustomerUsers in the system to this controller
+	 * @param users passes the list of all CustomerUsers in the system to this
+	 *              controller
 	 */
 	public void setData(ArrayList<CustomerUser> users) {
 		idToCard = new HashMap<>();
@@ -71,7 +72,7 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns the station object that corresponds to this name.
 	 * 
@@ -81,7 +82,7 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 	public Station findStation(String name) {
 		return this.nameToStations.get(name);
 	}
-	
+
 	/**
 	 * This method ends a journey with the selected inputs.
 	 * 
@@ -109,13 +110,14 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 						currentJourney.setRenewTime(prevJourney.getRenewTime());
 					}
 				}
-				this.cardToUser.get(currentCard).addTripString("[" + currentCard.getID() + "] " + currentJourney.toString());
+				this.cardToUser.get(currentCard)
+						.addTripString("[" + currentCard.getID() + "] " + currentJourney.toString());
 			} catch (Exception e) {
 				status.setText("Error: Invalid date.");
 			}
 		}
 	}
-	
+
 	/**
 	 * This method starts a journey with the selected inputs.
 	 * 
@@ -143,7 +145,7 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 			}
 		}
 	}
-	
+
 	/**
 	 * This method returns the TravelCard associated to this id.
 	 * 
@@ -153,7 +155,7 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 	private TravelCard getCardUsingID(String id) {
 		return this.idToCard.get(Integer.parseInt(id));
 	}
-	
+
 	/**
 	 * This method changes the scene to the menu screen.
 	 * 
@@ -175,7 +177,7 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 		map.initialize("subway_map.txt");
 		this.routeController = map.getRouteMap();
 
-		this.stationList.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));       
+		this.stationList.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
 		this.nameToStations = this.routeController.getNameToStations();
 	}
 }

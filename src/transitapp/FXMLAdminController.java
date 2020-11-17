@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 public class FXMLAdminController extends ControllerParent implements Initializable {
-	
+
 	@FXML
 	public Text revenue;
 	@FXML
@@ -32,20 +32,20 @@ public class FXMLAdminController extends ControllerParent implements Initializab
 	public Text fullName;
 	@FXML
 	public Text email;
-	
+
 	public void signOutButton(ActionEvent event) throws IOException {
-		
+
 		changeScene(event, "FXMLMenu.FXML");
 	}
-	
+
 	public void dailyReportButton(ActionEvent event) throws IOException {
-		
+
 		// TODO
 	}
-	
+
 	public void generateRepButton(ActionEvent event) throws IOException {
-		
-		//TODO
+
+		// TODO
 	}
-	
+
 }

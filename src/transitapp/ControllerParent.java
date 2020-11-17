@@ -15,29 +15,30 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
- * This parent class is responsible for making controller children and
- * reducing the amount of code that is written. This class has the exit button
- * and the general layout for changing scenes when a button is pressed.
+ * This parent class is responsible for making controller children and reducing
+ * the amount of code that is written. This class has the exit button and the
+ * general layout for changing scenes when a button is pressed.
  *
  */
 
 abstract public class ControllerParent implements Initializable {
-	
+
 	/**
 	 * This method would close the window of the application.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	public void exitButton(ActionEvent event) throws IOException {
-		
+
 		Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-		
+
 		stage.close();
 	}
-	
+
 	/**
-	 * This method would open up the FXML file and then display it as the
-	 * current stage. It would also make the corners of the window not sharp.
+	 * This method would open up the FXML file and then display it as the current
+	 * stage. It would also make the corners of the window not sharp.
 	 * 
 	 * This code is inspired from the YouTube video linked below.
 	 * 

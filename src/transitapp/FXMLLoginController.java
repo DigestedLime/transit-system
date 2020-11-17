@@ -9,22 +9,19 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.collections.*;
 import javafx.scene.*;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.*;
 import user.*;
 
 /**
- * This class is responsible for the keeping the information in the textfields when you fill
- * in the information for username and password. It also changes the screen to menu when clicking
- * back and changes the screen to the register screen when the user does not have an account.
- * If an account get signed in, it would change the current screen to the dashboard screen.
+ * This class is responsible for the keeping the information in the textfields
+ * when you fill in the information for username and password. It also changes
+ * the screen to menu when clicking back and changes the screen to the register
+ * screen when the user does not have an account. If an account get signed in,
+ * it would change the current screen to the dashboard screen.
  *
  */
 public class FXMLLoginController extends ControllerParent implements Initializable {
@@ -35,18 +32,20 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 	private TextField password;
 	@FXML
 	private Text errorMsg;
-	
+
 	private ArrayList<CustomerUser> users;
-	
+
 	/**
-	 * @param users passes the list of all CustomerUsers in the system to this controller
+	 * @param users passes the list of all CustomerUsers in the system to this
+	 *              controller
 	 */
 	public void setData(ArrayList<CustomerUser> users) {
 		this.users = users;
 	}
-	
+
 	/**
 	 * This method changes the scene by returning to the menu.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -55,9 +54,10 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 		FXMLMenuController menu = loader.getController();
 		menu.setData(this.users);
 	}
-	
+
 	/**
 	 * This method changes the scene to the login screen.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -66,12 +66,13 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 		FXMLRegisterController register = loader.getController();
 		register.setData(this.users);
 	}
-	
+
 	/**
-	 * This method stores the information from the textfields for the password
-	 * and the username and checks that the credentials are correct. It holds 
-	 * the information to display it onto the dashboard. It also changes screen
-	 * to the dashboard.
+	 * This method stores the information from the textfields for the password and
+	 * the username and checks that the credentials are correct. It holds the
+	 * information to display it onto the dashboard. It also changes screen to the
+	 * dashboard.
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -89,7 +90,7 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 				break;
 			}
 		}
-		
+
 		if (!logInSuccess) {
 			errorMsg.setText("Error: Invalid Email/Password");
 		} else {
@@ -100,15 +101,15 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 			stage.setScene(dashScene);
 			stage.show();
 		}
-		
+
 	}
-	
+
 	/**
 	 * Method that needs to be in the class from implementing Initializable.
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 	}
 
 }

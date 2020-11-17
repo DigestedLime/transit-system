@@ -13,12 +13,12 @@
             <Font name="Segoe UI Light" size="46.0" />
          </font>
       </Text>
-      <Button layoutX="895.0" layoutY="676.0" mnemonicParsing="false" onAction="#exitButton" prefHeight="64.0" prefWidth="247.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Exit Application">
+      <Button layoutX="890.0" layoutY="674.0" mnemonicParsing="false" onAction="#exitButton" prefHeight="64.0" prefWidth="247.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Exit Application">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="status" layoutX="51.0" layoutY="674.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="809.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #777; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 25, 0, 0, 0);" text="Status: No data to display." textFill="#808080">
+      <Button fx:id="status" layoutX="51.0" layoutY="674.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="809.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #777; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 25, 0, 0, 0);" text="APP Version BETA" textFill="#808080">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
@@ -43,7 +43,7 @@
             <Font name="Segoe UI" size="21.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="431.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AVERAGE TRANSIT COST" textAlignment="CENTER" wrappingWidth="330.0">
+      <Text fill="WHITE" layoutX="431.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AVERAGE TRANSIT COST" textAlignment="CENTER" wrappingWidth="330.0">
          <font>
             <Font name="Segoe UI" size="21.0" />
          </font>
@@ -53,14 +53,14 @@
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="51.0" layoutY="580.0" mnemonicParsing="false" onAction="#addCardPush" prefHeight="64.0" prefWidth="330.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Add New Card">
+      <Button layoutX="51.0" layoutY="580.0" mnemonicParsing="false" onAction="#addCard" prefHeight="64.0" prefWidth="330.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Add New Card">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Text fx:id="averageTripCost" fill="WHITE" layoutX="431.0" layoutY="579.0" onMouseClicked="#update" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER" wrappingWidth="330.0">
+      <Text fx:id="averageTripCost" fill="WHITE" layoutX="431.0" layoutY="579.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER" wrappingWidth="330.0">
          <font>
-            <Font name="Segoe UI Bold" size="47.0" />
+            <Font name="Segoe UI" size="47.0" />
          </font>
       </Text>
       <Button layoutX="471.0" layoutY="67.0" mnemonicParsing="false" onAction="#load10Push" prefHeight="57.0" prefWidth="202.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Load $10">
@@ -78,8 +78,8 @@
             <Font name="Segoe UI Semilight" size="26.0" />
          </font>
       </Button>
-      <ListView fx:id="cardList" layoutX="51.0" layoutY="266.0" onKeyReleased="#update" onMouseReleased="#update" prefHeight="168.0" prefWidth="330.0" />
-      <Button fx:id="toggleActivate" layoutX="51.0" layoutY="484.0" mnemonicParsing="false" onAction="#toggleSuspension" prefHeight="64.0" prefWidth="156.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="-">
+      <ListView fx:id="cardList" layoutX="51.0" layoutY="266.0" prefHeight="168.0" prefWidth="330.0" />
+      <Button layoutX="51.0" layoutY="484.0" mnemonicParsing="false" onAction="#deactivateCardPush" prefHeight="64.0" prefWidth="156.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Deactivate">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
@@ -89,8 +89,8 @@
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <ListView fx:id="recentTripsList" layoutX="793.0" layoutY="266.0" prefHeight="260.0" prefWidth="341.0" />
-      <Text fill="WHITE" layoutX="790.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FOUR MOST RECENT TRIPS" textAlignment="CENTER" wrappingWidth="347.0">
+      <ListView fx:id="recentTripsList" layoutX="793.0" layoutY="268.0" prefHeight="260.0" prefWidth="341.0" />
+      <Text fill="WHITE" layoutX="790.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RECENT TRIPS" textAlignment="CENTER" wrappingWidth="347.0">
          <font>
             <Font name="Segoe UI" size="21.0" />
          </font>
@@ -100,15 +100,14 @@
             <Font name="Segoe UI Semilight" size="34.0" />
          </font>
       </Button>
-      <Text fill="WHITE" layoutX="429.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CURRENT CARD BALANCE" textAlignment="CENTER" wrappingWidth="330.0">
+      <Text fill="WHITE" layoutX="429.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CURRENT CARD BALANCE" textAlignment="CENTER" wrappingWidth="330.0">
          <font>
             <Font name="Segoe UI" size="21.0" />
          </font>
       </Text>
-      <Text fx:id="cardBalance" fill="WHITE" layoutX="429.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER" wrappingWidth="330.0">
-
+      <Text fx:id="balance" fill="WHITE" layoutX="429.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER" wrappingWidth="330.0">
          <font>
-            <Font name="Segoe UI Bold" size="47.0" />
+            <Font name="Segoe UI" size="47.0" />
          </font>
       </Text>
       <Button layoutX="229.0" layoutY="484.0" mnemonicParsing="false" onAction="#removeCardPush" prefHeight="64.0" prefWidth="156.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Remove">

@@ -11,7 +11,7 @@ import user.CustomerUser;
 import user.TravelCard;
 
 public class FileHandler {
-	
+
 	public static ArrayList<CustomerUser> readFile() {
 		ArrayList<CustomerUser> users = new ArrayList<CustomerUser>();
 		Scanner sc;
