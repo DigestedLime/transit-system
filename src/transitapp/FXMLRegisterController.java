@@ -30,7 +30,9 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 	private TextField password;
 
 	private ArrayList<CustomerUser> users;
-
+	
+	private static String ADMIN_EMAIL = "admin2312";
+	
 	/**
 	 * @param users passes the list of all CustomerUsers in the system to this
 	 *              controller
@@ -77,9 +79,13 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 				email_used = true;
 			}
 		}
-
-		if (!email_used && email.getText().trim().length() > 0 && password.getText().trim().length() > 0
-				&& !email.getText().contains(" ")) {
+		
+		if (email.getText() == ADMIN_EMAIL) {
+			email_used = true;
+		}
+		
+		if (!email_used && email.getText().trim().length() > 0 && 
+				password.getText().trim().length() > 0 && !email.getText().contains(" ")) {
 			CustomerUser temp = new CustomerUser(fullName.getText(), password.getText(), email.getText());
 			temp.addCard();
 			this.users.add(temp);

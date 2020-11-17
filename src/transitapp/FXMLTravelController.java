@@ -177,7 +177,8 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 		map.initialize("subway_map.txt");
 		this.routeController = map.getRouteMap();
 
-		this.stationList.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
+
+		this.stationList.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));   
 		this.nameToStations = this.routeController.getNameToStations();
 	}
 }

@@ -34,7 +34,11 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 	private Text errorMsg;
 
 	private ArrayList<CustomerUser> users;
-
+	
+	private static String ADMIN_EMAIL = "admin2312";
+	private static String ADMIN_PASSWORD = "557324";
+	
+	
 	/**
 	 * @param users passes the list of all CustomerUsers in the system to this
 	 *              controller
@@ -77,29 +81,37 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 	 * @throws IOException
 	 */
 	public void loginButtonPush(ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDashboard.FXML"));
-		Parent dashParent = loader.load();
-		FXMLDashboardController temp = loader.getController();
 		boolean logInSuccess = false;
-		int userIndex = 0;
-		for (int i = 0; i < this.users.size(); i++) {
-			if (this.users.get(i).logIn(password.getText(), email.getText())) {
-				userIndex = i;
-				errorMsg.setText("");
-				logInSuccess = true;
-				break;
-			}
-		}
+		if (email.getText().equals(ADMIN_EMAIL) && password.getText().equals(ADMIN_PASSWORD))  {
+			FXMLLoader loader = changeScene(event, "FXMLAdmin.FXML");
+			FXMLAdminController admin = loader.getController();
 
-		if (!logInSuccess) {
-			errorMsg.setText("Error: Invalid Email/Password");
 		} else {
-			temp.setData(this.users, userIndex);
-			Scene dashScene = new Scene(dashParent);
-			dashScene.setFill(Color.TRANSPARENT);
-			Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-			stage.setScene(dashScene);
-			stage.show();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDashboard.FXML"));
+			Parent dashParent = loader.load();
+			FXMLDashboardController temp = loader.getController();
+			
+			int userIndex = 0;
+			for (int i = 0; i < this.users.size(); i++) {
+				if (this.users.get(i).logIn(password.getText(), email.getText())) {
+					userIndex = i;
+					errorMsg.setText("");
+					logInSuccess = true;
+					break;
+				}
+			}
+			
+			if (!logInSuccess) {
+				errorMsg.setText("Error: Invalid Email/Password");
+			} else {
+				temp.setData(this.users, userIndex);
+				Scene dashScene = new Scene(dashParent);
+				dashScene.setFill(Color.TRANSPARENT);
+				Stage stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+				stage.setScene(dashScene);
+				stage.show();
+			}
+			
 		}
 
 	}

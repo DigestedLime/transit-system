@@ -76,6 +76,9 @@ public class FileHandler {
 	}
 
 	public static void writetoFile(ArrayList<CustomerUser> users) {
+		/* Source used to learn how to write to a file:
+		 * https://www.w3schools.com/java/java_files_create.asp
+		 */
 		try {
 			FileWriter writer = new FileWriter("customer_users.txt");
 			writer.write("# FORMAT: First line after this comment represents the current counter "

@@ -1,17 +1,22 @@
 package transitapp;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import user.CustomerUser;
 
 public class FXMLAdminController extends ControllerParent implements Initializable {
 
+	public ArrayList<CustomerUser> users;
+  
 	@FXML
 	public Text revenue;
 	@FXML
@@ -32,10 +37,19 @@ public class FXMLAdminController extends ControllerParent implements Initializab
 	public Text fullName;
 	@FXML
 	public Text email;
+	
+	/**
+	 * This method would sign the user out of the account and return them back to
+	 * the menu screen.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
+	public void signOutPush(ActionEvent event) throws IOException {
 
-	public void signOutButton(ActionEvent event) throws IOException {
-
-		changeScene(event, "FXMLMenu.FXML");
+		FXMLLoader loader = changeScene(event, "FXMLMenu.FXML");
+		FXMLMenuController menu = loader.getController();
+		menu.setData(this.users);
 	}
 
 	public void dailyReportButton(ActionEvent event) throws IOException {
@@ -47,5 +61,11 @@ public class FXMLAdminController extends ControllerParent implements Initializab
 
 		// TODO
 	}
-
+	
+	/**
+	 * @param users passes the list of all CustomerUsers in the system to this controller
+	 */
+	public void setData(ArrayList<CustomerUser> users) {
+		this.users = users;
+	}
 }
