@@ -89,8 +89,8 @@
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <ListView fx:id="recentTripsList" layoutX="793.0" layoutY="268.0" prefHeight="260.0" prefWidth="341.0" />
-      <Text fill="WHITE" layoutX="790.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RECENT TRIPS" textAlignment="CENTER" wrappingWidth="347.0">
+      <ListView fx:id="recentTripsList" layoutX="793.0" layoutY="266.0" prefHeight="260.0" prefWidth="341.0" />
+      <Text fill="WHITE" layoutX="790.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ACCOUNT ACTIVITY" textAlignment="CENTER" wrappingWidth="347.0">
          <font>
             <Font name="Segoe UI" size="21.0" />
          </font>

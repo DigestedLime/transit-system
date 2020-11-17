@@ -16,7 +16,6 @@ import user.CustomerUser;
 public class FXMLAdminController extends ControllerParent implements Initializable {
 
 	public ArrayList<CustomerUser> users;
-  
 	@FXML
 	public Text revenue;
 	@FXML
@@ -32,11 +31,15 @@ public class FXMLAdminController extends ControllerParent implements Initializab
 	@FXML
 	public TextField endTime;
 	@FXML
+	public TextField costsBox;
+	@FXML
 	public Button status;
 	@FXML
 	public Text fullName;
 	@FXML
 	public Text email;
+	@FXML
+	public Text avgTrip;
 	
 	/**
 	 * This method would sign the user out of the account and return them back to
@@ -46,24 +49,44 @@ public class FXMLAdminController extends ControllerParent implements Initializab
 	 * @throws IOException
 	 */
 	public void signOutPush(ActionEvent event) throws IOException {
-
 		FXMLLoader loader = changeScene(event, "FXMLMenu.FXML");
 		FXMLMenuController menu = loader.getController();
 		menu.setData(this.users);
 	}
 
 	public void dailyReportButton(ActionEvent event) throws IOException {
-
-		// TODO
+		// Not implemented
 	}
 
 	public void generateRepButton(ActionEvent event) throws IOException {
-
-		// TODO
+		
+		ArrayList<String> allTrips = new ArrayList<String>();
+		double sum = 0;
+		int counter = 0;
+		double profit = 0;
+		for (CustomerUser usr : this.users) {
+			if (usr.getTrips() != null) {
+				allTrips.addAll(usr.getTrips());
+			}
+		}
+		for (String trip : allTrips) {
+			if (trip.contains(":")) {
+				sum += Double.parseDouble(trip.split(": ")[1]);
+				counter++;
+			}
+		}
+		if (costsBox.getText() != null) {
+			profit = sum - Double.parseDouble(costsBox.getText());
+		}
+		revenue.setText("$" + sum);
+		costs.setText("$" + Double.parseDouble(costsBox.getText()));
+		profits.setText("$" + profit);
+		avgTrip.setText("$" + sum / counter);
 	}
-	
+
 	/**
-	 * @param users passes the list of all CustomerUsers in the system to this controller
+	 * @param users passes the list of all CustomerUsers in the system to this
+	 *              controller
 	 */
 	public void setData(ArrayList<CustomerUser> users) {
 		this.users = users;
