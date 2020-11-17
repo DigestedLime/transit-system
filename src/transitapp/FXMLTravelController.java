@@ -2,7 +2,6 @@ package transitapp;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -27,10 +26,8 @@ import user.CustomerUser;
 import user.TravelCard;
 
 /**
- * This class is responsible for the user travelling with card information, and
+ * This class is responsible for the user traveling with card information, and
  * giving a status for the user to know if the trip was successful.
- * 
- * @author
  *
  */
 public class FXMLTravelController extends ControllerParent implements Initializable {
@@ -54,17 +51,21 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 
 	public RouteController routeController;
 	public ArrayList<CustomerUser> users;
-	private HashMap<Integer, TravelCard> idToCard = new HashMap<Integer, TravelCard>();
+	private HashMap<Integer, TravelCard> idToCard;
 	private HashMap<String, Station> nameToStations;
+	private HashMap<TravelCard, CustomerUser> cardToUser;
 	
 	/**
 	 * @param users passes the list of all CustomerUsers in the system to this controller
 	 */
 	public void setData(ArrayList<CustomerUser> users) {
+		idToCard = new HashMap<>();
+		cardToUser = new HashMap<>();
 		this.users = users;
 		for (CustomerUser user : this.users) {
 			for (TravelCard card : user.getCards()) {
 				this.idToCard.put(card.getID(), card);
+				this.cardToUser.put(card, user);
 			}
 		}
 	}
@@ -94,10 +95,7 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 						currentJourney.setRenewTime(prevJourney.getRenewTime());
 					}
 				}
-				System.out.println(currentCard.pay((float) currentJourney.tripFare()));
-				System.out.println(currentCard.getBalance());
-				System.out.println(currentJourney.tripFare());
-				System.out.println(currentJourney.calculateFare());
+				this.cardToUser.get(currentCard).addTripString("[" + currentCard.getID() + "] " + currentJourney.toString());
 			} catch (Exception e) {
 				status.setText("Error: Invalid date.");
 				e.printStackTrace();
@@ -141,41 +139,16 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 		temp.setData(this.users);
 	}
 
-//	public void update() {
-//		if (stationList != null) {
-//			if (cardList.getSelectionModel().getSelectedItem() != null) {
-//				for (TravelCard card : this.currentUser.getCards()) {
-//					if ((Integer) card.getID() == Integer.parseInt(cardList.getSelectionModel().getSelectedItem())) {
-//						currentCard = card;
-//						if (card.isSuspended()) {
-//							toggleActivate.setText("Unsuspend");
-//						} else {
-//							toggleActivate.setText("Suspend");
-//						}
-//					}
-//				}
-//			}
-//		}
-//		DecimalFormat doubleDecimal = new DecimalFormat("0.##");
-//		System.out.println(currentCard.getBalance());
-//		cardBalance.setText("$" + doubleDecimal.format(currentCard.getBalance()));
-//	}
-
 	/**
 	 * Method that needs to be in the class from implementing Initializable.
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		RouteMap map = new RouteMap();
+		map.initialize("subway_map.txt");
+		this.routeController = map.getRouteMap();
 
-		RouteMap temp = new RouteMap();
-		temp.initialize("subway_map.txt");
-		this.routeController = temp.getRouteMap();
-
-		this.stationList.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
-//        departingStation.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
-//        terminusStation.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
-//        
+		this.stationList.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));       
 		this.nameToStations = this.routeController.getNameToStations();
-
 	}
 }

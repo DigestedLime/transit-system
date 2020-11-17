@@ -3,7 +3,6 @@ package routenetwork;
 import java.util.ArrayList;
 
 /**
- * 
  * Abstract class representing a station.
  * A station has a name, fareType, and list of stations it is attached to
  */
@@ -17,8 +16,9 @@ public abstract class Station {
 	 * Constructs a new station, setting the name for it.
 	 * @param name
 	 */
-	public Station(String name) {
+	public Station(String name, String fareType) {
 		this.setName(name);
+		this.setFareType(fareType);
 	}
 	
 	/**
@@ -52,9 +52,11 @@ public abstract class Station {
 		return this.fareType;
 	}
 	
-	//When printing, just show the stations name
-	public String toString() {
-		return this.getName();
+	/**
+	 * 
+	 * @param fareType	fare to set fareType to.
+	 */
+	private void setFareType(String fareType) {
+		this.fareType = fareType;
 	}
-	
 }

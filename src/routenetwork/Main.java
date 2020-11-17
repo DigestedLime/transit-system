@@ -1,7 +1,13 @@
 package routenetwork;
 
 public class Main {
-
+	
+	
+	/**Test file to try out RouteController.
+	 * 
+	 * 
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		// TESTING. FOR REFERENCE WHEN WRITING EVENT PARSER FOR SUBWAY/BUS ROUTES.
 		

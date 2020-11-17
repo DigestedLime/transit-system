@@ -11,10 +11,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import user.User;
 
-public class Main extends Application{
-	
-	//HashMap<String, User> users;
-	
+/**
+ * This is the entry class to the entire program.
+ *
+ */
+
+public class Main extends Application{		
 	Boolean isLoggedIn = false;
 	
 	ArrayList<User> users;

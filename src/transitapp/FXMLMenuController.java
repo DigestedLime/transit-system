@@ -14,8 +14,6 @@ import user.CustomerUser;
  * This class is responsible for the events that happen in the menu screen. Any
  * button event that happens would cause change the scene to login, settings or
  * register.
- * 
- * @author
  *
  */
 public class FXMLMenuController extends ControllerParent implements Initializable {

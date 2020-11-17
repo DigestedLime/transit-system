@@ -18,7 +18,6 @@ import javafx.stage.Stage;
  * This parent class is responsible for making controller children and
  * reducing the amount of code that is written. This class has the exit button
  * and the general layout for changing scenes when a button is pressed.
- * @author 
  *
  */
 
@@ -62,7 +61,6 @@ abstract public class ControllerParent implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

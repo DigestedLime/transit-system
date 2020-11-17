@@ -29,6 +29,7 @@ public class Journey {
 			if (station.getFareType() == "BUS") {
 				this.currentFare += 2.0;
 				this.tripEnded = true;
+				this.route[1] = station;
 			}
 			return true;
 		}
@@ -107,9 +108,6 @@ public class Journey {
 			fare = (double) (0.5* minDistance) + 2;
 		} else {
 			//Both are Train
-//			System.out.println(rcontrol);
-//			System.out.println(startStn);
-//			System.out.println(endStn);
 			fare = (double) (0.5*(rcontrol.stationDistance((TrainStation) startStn, (TrainStation) endStn)));
 		}
 		
@@ -141,7 +139,8 @@ public class Journey {
 	}
 	
 	public String toString() {
-		return ((Double)this.currentFare).toString();
+		return this.route[0].getName() + " -> " +
+				this.route[1].getName() + ": " + Double.toString(this.currentFare);
 		
 	}
 }

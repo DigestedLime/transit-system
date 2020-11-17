@@ -1,18 +1,16 @@
 package routenetwork;
 
 /**
- * A bus station has a specific faretype of "BUS" which is used in fare calculations
+ * A bus station has a specific fare type of "BUS" which is used in fare calculations
  */
 public class BusStation extends Station {
-
-	private String fareType = "BUS";
 	
 	/**
 	 * 
 	 * @param name   name of the station
 	 */
 	public BusStation(String name) {
-		super(name);
+		super(name, "BUS");
 	}
 	
 	/**

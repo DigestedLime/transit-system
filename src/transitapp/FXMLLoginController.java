@@ -25,7 +25,6 @@ import user.*;
  * in the information for username and password. It also changes the screen to menu when clicking
  * back and changes the screen to the register screen when the user does not have an account.
  * If an account get signed in, it would change the current screen to the dashboard screen.
- * @author Lap Khang Tran
  *
  */
 public class FXMLLoginController extends ControllerParent implements Initializable {

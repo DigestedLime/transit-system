@@ -1,4 +1,4 @@
-package transitapp;
+	package transitapp;
 
 import java.io.IOException;
 
@@ -11,12 +11,10 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import backendapi.RouteMap;
 import javafx.collections.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import routenetwork.RouteController;
 import user.CustomerUser;
 import user.TravelCard;
 
@@ -25,9 +23,7 @@ import user.TravelCard;
  * they are signed into their account such as their name, their email address,
  * card balance, the departing station, the card that they want to use, adding a
  * new card, ways to load in their card, starting their journey, signing out of
- * the account, and exiting the application
- * 
- * @author Lap Khang Tran
+ * the account, and exiting the application.
  *
  */
 public class FXMLDashboardController extends ControllerParent implements Initializable {
@@ -35,7 +31,6 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	public ArrayList<CustomerUser> users;
 	public CustomerUser currentUser;
 	public TravelCard currentCard;
-	public RouteController routeController;
 
 	@FXML
 	public Text fullName;
@@ -56,15 +51,11 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	@FXML
 	public ListView<String> recentTripsList;
 
-	/**
-	 * This method is responsible for saving the full name and the email information
-	 * that the user has entered previously
-	 * 
-	 * @param a
-	 * @param b
-	 */
+	
 	
 	/**
+	 * This method is responsible for populating the data in this class.
+	 * 
 	 * @param users        passes the list of all CustomerUsers in the system to this controller
 	 * @param userIndex    passes the index of the user whose dashboard needs to be presented
 	 */
@@ -105,14 +96,6 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 		FXMLLoader loader = changeScene(event, "FXMLMenu.FXML");
 		FXMLMenuController menu = loader.getController();
 		menu.setData(this.users);
-	}
-
-	/**
-	 * update lists and statuses and balance here, and then call this method in
-	 * login controller FXMLLoginController.loginButtonPush()
-	 */
-	public void updateLists() {
-		// TODO
 	}
 
 	/**
@@ -267,9 +250,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		RouteMap temp = new RouteMap();
-		temp.initialize("subway_map.txt");
-		this.routeController = temp.getRouteMap();
+		
 	}
 
 }

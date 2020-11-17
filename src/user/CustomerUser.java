@@ -2,8 +2,6 @@ package user;
 
 import java.util.ArrayList;
 
-import routenetwork.Trip;
-
 /**
  * 
  * A Customer User is a customer that uses the transit system. They have an email, a list of the
@@ -14,7 +12,6 @@ public class CustomerUser extends User {
 	
 	private String email;
 	private ArrayList<TravelCard> cards;
-	private static int MAX_TRIPS = 5;
 	//Has a record of the most recent trips. End of the array means latest trip
 	private ArrayList<String> trips;
 	
@@ -37,19 +34,6 @@ public class CustomerUser extends User {
 	 */
 	public void changeName(String newName) {
 		this.username = newName;
-	}
-	
-	/**
-	 * Adds a string representation of a trip to the list of trips. Removes the oldest trip if 
-	 * the list is full
-	 * @param trip  trip to add at the end of the the list
-	 */
-	public void addTrip(Trip trip) {
-		if (this.trips.size() == MAX_TRIPS) {
-			this.trips.remove(0);
-		}
-		this.trips.add(trip.getRoute().get(0).getName() + " -> " + trip.getRoute().get(
-				trip.getRoute().size() - 2).getName() + ": " + Float.toString(trip.getCost()));
 	}
 	
 	
@@ -87,11 +71,8 @@ public class CustomerUser extends User {
 	 * Adds a trip to the list of trips, assuming it is already a string representation
 	 * @param trip
 	 */
-	public void addTripString(String trip) {
-		if (this.trips.size() == MAX_TRIPS) {
-			this.trips.remove(MAX_TRIPS - 1);
-		}
-		this.trips.add(trip);
+	public void addTripString(String journey) {
+		this.trips.add(journey);
 	}
 	
 	/**

@@ -17,7 +17,6 @@ import user.CustomerUser;
  * their email, and the password that they wish to sign in with. It also has a button to go back
  * to the menu, and another button that allows them to go the login screen if they already have
  * an account and do not wish to make another account.
- * @author Lap Khang Tran
  *
  */
 public class FXMLRegisterController extends ControllerParent implements Initializable {

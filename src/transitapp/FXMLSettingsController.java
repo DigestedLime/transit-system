@@ -14,7 +14,6 @@ import user.CustomerUser;
 /**
  * This class shows the settings options and currently only has the back and the
  * exit button.
- * @author
  *
  */
 public class FXMLSettingsController extends ControllerParent implements Initializable {
