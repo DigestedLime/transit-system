@@ -2,7 +2,6 @@ package transitapp;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -141,26 +140,6 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 		temp.setData(this.users);
 	}
 
-//	public void update() {
-//		if (stationList != null) {
-//			if (cardList.getSelectionModel().getSelectedItem() != null) {
-//				for (TravelCard card : this.currentUser.getCards()) {
-//					if ((Integer) card.getID() == Integer.parseInt(cardList.getSelectionModel().getSelectedItem())) {
-//						currentCard = card;
-//						if (card.isSuspended()) {
-//							toggleActivate.setText("Unsuspend");
-//						} else {
-//							toggleActivate.setText("Suspend");
-//						}
-//					}
-//				}
-//			}
-//		}
-//		DecimalFormat doubleDecimal = new DecimalFormat("0.##");
-//		System.out.println(currentCard.getBalance());
-//		cardBalance.setText("$" + doubleDecimal.format(currentCard.getBalance()));
-//	}
-
 	/**
 	 * Method that needs to be in the class from implementing Initializable.
 	 */
@@ -171,10 +150,7 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 		temp.initialize("subway_map.txt");
 		this.routeController = temp.getRouteMap();
 
-		this.stationList.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
-//        departingStation.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
-//        terminusStation.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));
-//        
+		this.stationList.setItems(FXCollections.observableArrayList(this.routeController.getAllStations()));   
 		this.nameToStations = this.routeController.getNameToStations();
 
 	}
