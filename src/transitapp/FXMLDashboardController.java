@@ -1,6 +1,5 @@
 package transitapp;
 
-import java.awt.List;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -14,21 +13,12 @@ import java.util.ResourceBundle;
 
 import backendapi.RouteMap;
 import javafx.collections.*;
-import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.*;
-import routenetwork.BusStation;
-import routenetwork.Journey;
 import routenetwork.RouteController;
-import routenetwork.Station;
-import routenetwork.TrainStation;
 import user.CustomerUser;
 import user.TravelCard;
-import user.User;
 
 /**
  * This class displays all the information that the user would want to see when
@@ -73,7 +63,11 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @param a
 	 * @param b
 	 */
-
+	
+	/**
+	 * @param users        passes the list of all CustomerUsers in the system to this controller
+	 * @param userIndex    passes the index of the user whose dashboard needs to be presented
+	 */
 	public void setData(ArrayList<CustomerUser> users, int userIndex) {
 		this.users = users;
 		this.currentUser = users.get(userIndex);
@@ -191,7 +185,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 					status.setText("Card " + this.cardList.getSelectionModel().getSelectedItem() + " suspended.");
 					card.suspendCard();
 				}
-				update();
+				this.update();
 			}
 		}
 
@@ -240,9 +234,10 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 
 	}
 
+	
+	
 	public void update() {
 		if (cardList != null) {
-			
 			if (cardList.getSelectionModel().getSelectedItem() != null) {
 				for (TravelCard card : this.currentUser.getCards()) {
 					if ((Integer) card.getID() == Integer.parseInt(cardList.getSelectionModel().getSelectedItem())) {
@@ -255,8 +250,8 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 					}
 				}
 			}
-			
 		}
+		FileHandler.writetoFile(this.users);
 		DecimalFormat doubleDecimal = new DecimalFormat("0.##");
 		cardBalance.setText("$" + doubleDecimal.format(currentCard.getBalance()));
 	}
@@ -270,13 +265,11 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	/**
 	 * Method that needs to be in the class from implementing Initializable.
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		RouteMap temp = new RouteMap();
 		temp.initialize("subway_map.txt");
 		this.routeController = temp.getRouteMap();
-
 	}
 
 }

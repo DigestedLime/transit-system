@@ -1,10 +1,11 @@
 package routenetwork;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RouteController {
 
-	private ArrayList<TrainStation> route = new ArrayList<TrainStation>();
+	private ArrayList<TrainStation> route = new ArrayList<>();
 
 	public RouteController() {
 		// Nothing required
@@ -55,7 +56,7 @@ public class RouteController {
 	}
 	
 	public ArrayList<BusStation> getBusStations () {
-		ArrayList<BusStation> busStns = new ArrayList<BusStation>();
+		ArrayList<BusStation> busStns = new ArrayList<>();
 		for (TrainStation trainStation: this.route) {
 			for (Station busStation: trainStation.getLinkedStations()) {
 				if (!busStns.contains(busStation)) {
@@ -67,7 +68,7 @@ public class RouteController {
 	}
 	
 	public ArrayList<String> getAllStations () {
-		ArrayList<String> allStations = new ArrayList<String>();
+		ArrayList<String> allStations = new ArrayList<>();
 		for (Station station: this.getTrainRoute()) {
 			allStations.add(station.getName());
 		}
@@ -77,10 +78,21 @@ public class RouteController {
 		return allStations;
 	}
 	
+	public HashMap<String, Station> getNameToStations () {
+		HashMap<String, Station> nameToStations = new HashMap<>();
+		for (Station station: this.getTrainRoute()) {
+			nameToStations.put(station.getName(), station);
+		}
+		for(Station station: this.getBusStations()) {
+			nameToStations.put(station.getName(), station);
+		}
+		return nameToStations;
+	}
+	
 	public String toString() {
-		ArrayList<String> stationNames = new ArrayList<String>();
+		ArrayList<String> stationNames = new ArrayList<>();
 		for (TrainStation temp : this.route) {
-			ArrayList<String> busLineNames = new ArrayList<String>();
+			ArrayList<String> busLineNames = new ArrayList<>();
 			for (Station tempTwo : temp.getLinkedStations()) {
 				busLineNames.add(tempTwo.getName());
 			}
