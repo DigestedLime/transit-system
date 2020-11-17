@@ -14,9 +14,9 @@ import javafx.scene.text.Text;
 import user.CustomerUser;
 
 public class FXMLAdminController extends ControllerParent implements Initializable {
-	
+
 	public ArrayList<CustomerUser> users;
-	
+  
 	@FXML
 	public Text revenue;
 	@FXML
@@ -51,15 +51,15 @@ public class FXMLAdminController extends ControllerParent implements Initializab
 		FXMLMenuController menu = loader.getController();
 		menu.setData(this.users);
 	}
-	
+
 	public void dailyReportButton(ActionEvent event) throws IOException {
-		
+
 		// TODO
 	}
-	
+
 	public void generateRepButton(ActionEvent event) throws IOException {
-		
-		//TODO
+
+		// TODO
 	}
 	
 	/**
