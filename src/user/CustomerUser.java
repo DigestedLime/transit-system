@@ -52,6 +52,7 @@ public class CustomerUser extends User {
 				trip.getRoute().size() - 2).getName() + ": " + Float.toString(trip.getCost()));
 	}
 	
+	
 	/**
 	 * 
 	 * @param password

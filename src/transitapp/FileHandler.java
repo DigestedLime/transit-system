@@ -62,6 +62,7 @@ public class FileHandler {
 				}
 				
 				//Adds the data to the user object
+
 				for (int i = 0; i < num_trips; i++) {
 					line = sc.nextLine();
 					current_user.addTripString(line);

@@ -185,7 +185,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 					status.setText("Card " + this.cardList.getSelectionModel().getSelectedItem() + " suspended.");
 					card.suspendCard();
 				}
-				update();
+				this.update();
 			}
 		}
 
@@ -251,6 +251,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 				}
 			}
 		}
+		FileHandler.writetoFile(this.users);
 		DecimalFormat doubleDecimal = new DecimalFormat("0.##");
 		cardBalance.setText("$" + doubleDecimal.format(currentCard.getBalance()));
 	}
