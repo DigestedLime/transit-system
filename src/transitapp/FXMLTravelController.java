@@ -55,7 +55,10 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 	public ArrayList<CustomerUser> users;
 	private HashMap<Integer, TravelCard> idToCard = new HashMap<Integer, TravelCard>();
 	private HashMap<String, Station> nameToStations;
-
+	
+	/**
+	 * @param users passes the list of all CustomerUsers in the system to this controller
+	 */
 	public void setData(ArrayList<CustomerUser> users) {
 		this.users = users;
 		for (CustomerUser user : this.users) {

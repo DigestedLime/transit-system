@@ -39,6 +39,9 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 	
 	private ArrayList<CustomerUser> users;
 	
+	/**
+	 * @param users passes the list of all CustomerUsers in the system to this controller
+	 */
 	public void setData(ArrayList<CustomerUser> users) {
 		this.users = users;
 	}
@@ -89,9 +92,6 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 		}
 		
 		if (!logInSuccess) {
-			/* TODO: Add some message to tell log in failed (low priority: can just not do anything)
-			 * 
-			 */
 			errorMsg.setText("Error: Invalid Email/Password");
 		} else {
 			temp.setData(this.users, userIndex);

@@ -63,7 +63,11 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @param a
 	 * @param b
 	 */
-
+	
+	/**
+	 * @param users        passes the list of all CustomerUsers in the system to this controller
+	 * @param userIndex    passes the index of the user whose dashboard needs to be presented
+	 */
 	public void setData(ArrayList<CustomerUser> users, int userIndex) {
 		this.users = users;
 		this.currentUser = users.get(userIndex);
@@ -248,7 +252,6 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 			}
 		}
 		DecimalFormat doubleDecimal = new DecimalFormat("0.##");
-		System.out.println(currentCard.getBalance());
 		cardBalance.setText("$" + doubleDecimal.format(currentCard.getBalance()));
 	}
 
