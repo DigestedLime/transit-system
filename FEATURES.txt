@@ -1,64 +1,78 @@
-=====
-ADD INSTRUCTIONS FOR HOW TO RUN/USE YOUR PROGRAM HERE:
-e.g. What format should we use to input data or add data to events.txt? Anything else we need to know in order to use your program?
-=====
+A2-BARGAIN-BIN-METROLINX-TM
+
+HOW TO USE:
+
+- How to Register
+	- First, open the application and click on the register button
+	- Enter in your Full Name, Email Address, and Password for the account (No spaces!)
+	- Once logged in, you are able to see the dashboard!
+
+- How to Log-in once Registered
+	- First, click on the log-in button and enter in your credentials for the account that you have registered with
+	- If you have entered in the right credentials, you should be put into the dashboard, otherwise please re-enter the credentials
+
+- How to use the dashboard once logged in
+
+	- How to load in more money for the cards that are associated with your account 
+		- Please select the card that you would like to load money into
+		- Click on the buttons at the top that say "Load $10", "Load $20", "Load $50" and click on the desired amount to put into the account
+
+	- How to deactivate a card on the account
+		- Please click on the card that is desired to be deactivated
+		- Click on the deactivate button
+
+	- How to remove a card on the account
+		- Please click on the card that is desired to be removed from the account
+		- Click on the remove button
+
+	- Click on Sign-out to sign out of the account and be put back into the menu screen
+	- Click on Exit Application to close the program
+
+
+- How to Travel
+	- Please enter the Card ID/Number that is wished to be used for the journey, 
+	- When entering
+		- Please enter the time that you got on, and the current station that you are at (Both inputs must be valid, cannot have a wrong time or an unknown bus/train station)
+		- Click on Tap On once the information is inputted correctly
+	- When exiting
+		- Please enter the time that you got off, and the current station that you arrived at 
+		(Both inputs must be correct, cannot have a wrong time where the time getting on is after the time getting off, or an unknown bus/train station)
+		- Click on Tap Off once you have arrived at the correct destination
+	- The fare will be automatically calculated!
+
+- Admin Features
+	- First, click on the log in button to log into your admin account
+	- The dashboard is different from what the user sees
+	
+	- How to Generate the Daily Report 
+		- Click on the Daily Report button
+		- This would print out in the console for the day
+	
+	- How to Generate Reports with any start time and end time
+		- Please enter the time and date of the start time and the time and date of the end time
+		- Then click Generate to generate a report with the times
+		- This would print out in the console for 
 
 
 
-
-
-
-
-
-
-=====
-LIST ALL FEATURES THAT YOU WORKED ON HERE, AND HOW TO INPUT RELEVANT DATA FOR THE FEATURE (IF APPLICABLE)
-=====
-
-FEATURE 1
-
-Description: Tapping a card at a station
-
-Usage Instructions: (Describe how to input relevant data to signify a tap, and what output will show up if the tap worked, etc. Anything that is relevant to the client using your program, WITHOUT going into any details about the actual code)
-
-Design Decisions: (Describe any decisions you made in the organization of code relevant to this feature. If any OOP principles, SOLID principles or design patterns were used, clearly highlight this here).
-
-
-FEATURE 2
-
-Description:
-
-Usage Instructions:
-
-Design Decisions:
-
-
-FEATURE 3
-
-Description:
-
-Usage Instructions:
-
-Design Decisions:
-
-
-
-
-...
-
-
-
-
-======
-
-Note: If you have design decisions that don't fit under a specific feature, but are instead relevant to multiple features, feel free to include them at the bottom of this file here.
-
-OTHER NOTES
-
-
-
-
-
-
+FEATURES
+	- We get to see the revenue as well as the cost and profits as an admin user
+	- FANCY SCHMANCY GUI with scene builder 
+	- exiting GUI instead of closing the window itself :)
+	- Cardholders can store their name, email address, and travel cards
+	- Cardholders can change their name, but not their email address
+	- Cards can be removed or suspended
+	- New cards can be made with a starting balance of $19
+	- Cards can only have a negative balance if it was positive and charged greater then the balance, after which it needs to first be loaded till positive until it can be used again
+	- Cardholders can add $10, $20, and $50 dollars to a card at a time
+	- Admin users can have access to the total number of stations reached by all cardholders and fares collected each day
+	- Have system be extensible for more detailed stats to also be viewed if needed
+	- Allow transit users to input tap ins and tap outs, with the appropriate fare cost being deducted from the card
+	- Each bus ride costs $2 and is deducted when entering a bus
+	- Train rides cost $0.50 per station travelled to, and the cost is calculated when leaving the station.
+	- Have trips fares be capped at 6
+	- Be able to handle situations where one taps out before ever tapping in, or they do not ever tap out.
+	- Tap outs record time and location.
+	- Information of a user is saved when they exit the application
 
 
