@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import routenetwork.Journey;
 
 /**
- * 
  * A travel card that a customer can have. It has a unique ID, a balance, and the ability to be 
  * suspended. It also keeps track which journey it is currently on
  *
@@ -136,7 +135,7 @@ public class TravelCard {
 	}
 	
 	/**
-	 * @return return the journey the card is currently doing
+	 * @return return the current journey the cardholder is currently on.
 	 */
 	public Journey getCurrentJourney() {
 		if (this.journeys.isEmpty()) {
@@ -145,7 +144,7 @@ public class TravelCard {
 		return this.journeys.get(this.journeys.size() - 1);
 	}
   
-  /** Adds journey to the journeys ArrayList.
+	/** Adds journey to the journeys ArrayList.
 	 * @param journey
 	 */
 	public void addJourney(Journey journey) {
@@ -153,6 +152,9 @@ public class TravelCard {
 
 	}
 	
+	/**
+	 * @return return the last journey the cardholder was on.
+	 */
 	public Journey getPrevJourney() {
 		if (this.journeys.size() > 1) {
 			return this.journeys.get(this.journeys.size() - 2);
@@ -160,12 +162,10 @@ public class TravelCard {
 		return null;
 	}
 	
+	/**
+	 * @return return whether or not this card can pay for another trip.
+	 */
 	public boolean cannotPay() {
 		return this.cannotPay;
 	}
-	
-	public String toString() {
-		return ((Integer)this.id).toString();
-	}
-	
 }

@@ -56,6 +56,8 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 	private HashMap<TravelCard, CustomerUser> cardToUser;
 	
 	/**
+	 * Populates the data for this class.
+	 * 
 	 * @param users passes the list of all CustomerUsers in the system to this controller
 	 */
 	public void setData(ArrayList<CustomerUser> users) {
@@ -69,11 +71,23 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 			}
 		}
 	}
-
-	public Station findStation(String a) {
-		return this.nameToStations.get(a);
+	
+	/**
+	 * Returns the station object that corresponds to this name.
+	 * 
+	 * @param name of a station
+	 * @return return the station corresponding to this name.
+	 */
+	public Station findStation(String name) {
+		return this.nameToStations.get(name);
 	}
-
+	
+	/**
+	 * This method ends a journey with the selected inputs.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void journeyOffPush(ActionEvent event) throws IOException {
 		if (!this.cardID.getText().matches("\\d+")) {
 			status.setText("Error: Card IDs must be numeric.");
@@ -98,11 +112,16 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 				this.cardToUser.get(currentCard).addTripString("[" + currentCard.getID() + "] " + currentJourney.toString());
 			} catch (Exception e) {
 				status.setText("Error: Invalid date.");
-				e.printStackTrace();
 			}
 		}
 	}
-
+	
+	/**
+	 * This method starts a journey with the selected inputs.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void journeyPush(ActionEvent event) throws IOException {
 		if (!this.cardID.getText().matches("\\d+")) {
 			status.setText("Error: Card IDs must be numeric.");
@@ -118,21 +137,29 @@ public class FXMLTravelController extends ControllerParent implements Initializa
 				Journey currentJourney = new Journey(this.routeController);
 				currentJourney.tapOn(this.findStation(this.stationList.getSelectionModel().getSelectedItem()),
 						currTime);
-				System.out.println(currentJourney);
-				System.out.println(currentCard);
 				currentCard.addJourney(currentJourney);
-				System.out.println(currentCard.getBalance());
 			} catch (Exception e) {
 				status.setText("Error: Invalid date.");
-				e.printStackTrace();
 			}
 		}
 	}
-
+	
+	/**
+	 * This method returns the TravelCard associated to this id.
+	 * 
+	 * @param id of a card
+	 * @return returns null if the id is not valid.
+	 */
 	private TravelCard getCardUsingID(String id) {
 		return this.idToCard.get(Integer.parseInt(id));
 	}
-
+	
+	/**
+	 * This method changes the scene to the menu screen.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void backBtnPush(ActionEvent event) throws IOException {
 		FXMLLoader loader = changeScene(event, "FXMLMenu.FXML");
 		FXMLMenuController temp = loader.getController();

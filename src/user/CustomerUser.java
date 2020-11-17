@@ -3,7 +3,6 @@ package user;
 import java.util.ArrayList;
 
 /**
- * 
  * A Customer User is a customer that uses the transit system. They have an email, a list of the
  * recent trips, and a list of TravelCards that they own
  *

@@ -18,14 +18,15 @@ import user.CustomerUser;
  */
 public class FXMLMenuController extends ControllerParent implements Initializable {
 	private ArrayList<CustomerUser> users;
-	
+
 	/**
-	 * @param users passes the list of all CustomerUsers in the system to this controller
+	 * @param users passes the list of all CustomerUsers in the system to this
+	 *              controller
 	 */
 	public void setData(ArrayList<CustomerUser> users) {
 		this.users = users;
 	}
-	
+
 	/**
 	 * This method changes the scene to the login screen.
 	 * 
@@ -61,20 +62,25 @@ public class FXMLMenuController extends ControllerParent implements Initializabl
 		FXMLRegisterController temp = loader.getController();
 		temp.setData(this.users);
 	}
-	
+
+	/**
+	 * This method changes the scene to the travel screen.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	public void travelButtonPush(ActionEvent event) throws IOException {
 		FXMLLoader loader = changeScene(event, "FXMLTravel.FXML");
 		FXMLTravelController temp = loader.getController();
 		temp.setData(this.users);
 	}
-	
-	
+
 	/**
 	 * Method that needs to be in the class from implementing Initializable.
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 	}
 
 }
