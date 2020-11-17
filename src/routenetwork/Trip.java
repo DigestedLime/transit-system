@@ -29,6 +29,11 @@ public class Trip {
 		}
 	}
 	
+	public ArrayList<Station> getRoute() {
+		return this.route;
+	}
+	
+	
 	public void enterStation(Station station, int minutes) {
 		if (this.current.getFareType() == "TRAIN") {
 			this.totalCost += 0.5;

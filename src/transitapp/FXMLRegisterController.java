@@ -31,6 +31,9 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 	
 	private ArrayList<CustomerUser> users;
 	
+	/**
+	 * @param users passes the list of all CustomerUsers in the system to this controller
+	 */
 	public void setData(ArrayList<CustomerUser> users) {
 		this.users = users;
 	}
@@ -42,7 +45,6 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 	 * @throws IOException
 	 */
 	public void backButtonPush(ActionEvent event) throws IOException {
-		
 		FXMLLoader loader =  changeScene(event, "FXMLMenu.FXML");
 		FXMLMenuController menu = loader.getController();
 		menu.setData(this.users);
@@ -73,7 +75,8 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 			}
 		}
 		
-		if (!email_used && email.getText().trim().length() > 0 && password.getText().trim().length() > 0) {
+		if (!email_used && email.getText().trim().length() > 0 && 
+				password.getText().trim().length() > 0 && !email.getText().contains(" ")) {
 			CustomerUser temp = new CustomerUser(fullName.getText(), password.getText(), email.getText());
 			temp.addCard();
 			this.users.add(temp);
@@ -81,10 +84,6 @@ public class FXMLRegisterController extends ControllerParent implements Initiali
 			FXMLLoader loader = changeScene(event, "FXMLDashboard.FXML");
 			FXMLDashboardController dashboard = loader.getController();
 			dashboard.setData(this.users, this.users.size() - 1);
-		} else {
-			/* TODO: Might make it clear via message that it didn't work
-			 * 
-			 */
 		}
 		
 	}

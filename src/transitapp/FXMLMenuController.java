@@ -21,6 +21,9 @@ import user.CustomerUser;
 public class FXMLMenuController extends ControllerParent implements Initializable {
 	private ArrayList<CustomerUser> users;
 	
+	/**
+	 * @param users passes the list of all CustomerUsers in the system to this controller
+	 */
 	public void setData(ArrayList<CustomerUser> users) {
 		this.users = users;
 	}

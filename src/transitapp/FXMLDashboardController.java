@@ -63,7 +63,11 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 * @param a
 	 * @param b
 	 */
-
+	
+	/**
+	 * @param users        passes the list of all CustomerUsers in the system to this controller
+	 * @param userIndex    passes the index of the user whose dashboard needs to be presented
+	 */
 	public void setData(ArrayList<CustomerUser> users, int userIndex) {
 		this.users = users;
 		this.currentUser = users.get(userIndex);
@@ -181,7 +185,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 					status.setText("Card " + this.cardList.getSelectionModel().getSelectedItem() + " suspended.");
 					card.suspendCard();
 				}
-				update();
+				this.update();
 			}
 		}
 
@@ -247,8 +251,8 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 				}
 			}
 		}
+		FileHandler.writetoFile(this.users);
 		DecimalFormat doubleDecimal = new DecimalFormat("0.##");
-		System.out.println(currentCard.getBalance());
 		cardBalance.setText("$" + doubleDecimal.format(currentCard.getBalance()));
 	}
 
