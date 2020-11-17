@@ -20,7 +20,7 @@
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="status" layoutX="51.0" layoutY="674.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="809.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #777; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 25, 0, 0, 0);" text="Status: Insufficient Funds." textFill="#808080">
+      <Button fx:id="status" layoutX="51.0" layoutY="674.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="809.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #777; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 25, 0, 0, 0);" text="Status: No data to display." textFill="#808080">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
@@ -30,64 +30,85 @@
             <Font name="Segoe UI Light" size="28.0" />
          </font>
       </Text>
-      <Button layoutX="925.0" layoutY="580.0" mnemonicParsing="false" onAction="#signOutPush" prefHeight="64.0" prefWidth="212.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Sign Out">
+      <Button layoutX="634.0" layoutY="580.0" mnemonicParsing="false" onAction="#signOutPush" prefHeight="64.0" prefWidth="503.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Sign Out">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="51.0" layoutY="212.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="335.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3d3d3d; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
-      <Text fill="WHITE" layoutX="159.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Revenue">
-         <font>
-            <Font name="Segoe UI Semilight" size="31.0" />
-         </font>
-      </Text>
+      <Button layoutX="51.0" layoutY="212.0" mnemonicParsing="false" prefHeight="152.0" prefWidth="258.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3d3d3d; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
       <Button layoutX="538.0" layoutY="55.0" mnemonicParsing="false" onAction="#dailyReportButton" prefHeight="82.0" prefWidth="602.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3d3d3d; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Daily Report">
          <font>
             <Font name="Segoe UI Semilight" size="35.0" />
          </font>
       </Button>
-      <Text fx:id="revenue" fill="WHITE" layoutX="160.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER">
+      <Text fx:id="revenue" fill="WHITE" layoutX="124.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI" size="47.0" />
          </font>
       </Text>
-      <Button layoutX="426.0" layoutY="212.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="335.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3d3d3d; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
-      <Button layoutX="804.0" layoutY="212.0" mnemonicParsing="false" prefHeight="180.0" prefWidth="335.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3d3d3d; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
-      <Text fill="WHITE" layoutX="557.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Costs">
-         <font>
-            <Font name="Segoe UI Semilight" size="31.0" />
-         </font>
-      </Text>
-      <Text fill="WHITE" layoutX="936.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profit">
-         <font>
-            <Font name="Segoe UI Semilight" size="31.0" />
-         </font>
-      </Text>
-      <Text fx:id="costs" fill="WHITE" layoutX="538.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER">
+      <Button layoutX="338.0" layoutY="212.0" mnemonicParsing="false" prefHeight="152.0" prefWidth="192.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3d3d3d; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
+      <Button layoutX="804.0" layoutY="212.0" mnemonicParsing="false" prefHeight="152.0" prefWidth="335.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3d3d3d; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
+      <Text fx:id="costs" fill="WHITE" layoutX="378.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI" size="47.0" />
          </font>
       </Text>
-      <Text fx:id="profits" fill="WHITE" layoutX="916.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER">
+      <Text fx:id="profits" fill="WHITE" layoutX="915.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI" size="47.0" />
          </font>
       </Text>
-      <Button layoutX="51.0" layoutY="412.0" mnemonicParsing="false" prefHeight="240.0" prefWidth="558.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3d3d3d; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
-      <Text fill="WHITE" layoutX="220.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate Report">
+      <Button layoutX="51.0" layoutY="386.0" mnemonicParsing="false" prefHeight="266.0" prefWidth="558.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3d3d3d; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
+      <Text fill="WHITE" layoutX="231.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GENERATE REPORT">
          <font>
-            <Font name="Segoe UI Semilight" size="31.0" />
+            <Font name="Segoe UI" size="25.0" />
          </font>
       </Text>
-      <DatePicker fx:id="startDate" layoutX="98.0" layoutY="475.0" prefHeight="33.0" prefWidth="188.0" promptText="Start Date" style="-fx-background-color: #545454; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0); -fx-background-radius: 20; -fx-border-radius: 20;" />
-      <DatePicker fx:id="endDate" layoutX="369.0" layoutY="475.0" prefHeight="33.0" prefWidth="188.0" promptText="End Date" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
+      <DatePicker fx:id="startDate" layoutX="73.0" layoutY="460.0" prefHeight="37.0" prefWidth="266.0" promptText="Start Date" style="-fx-background-color: #545454; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0); -fx-background-radius: 20; -fx-border-radius: 20;" />
+      <DatePicker fx:id="endDate" layoutX="348.0" layoutY="460.0" prefHeight="37.0" prefWidth="247.0" promptText="End Date" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
       <Accordion />
-      <TextField fx:id="startTime" layoutX="98.0" layoutY="526.0" prefHeight="33.0" prefWidth="188.0" promptText="24 Hour Time" style="-fx-background-radius: 15; -fx-text-fill: white; -fx-background-color: #484848; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
-      <TextField fx:id="endTime" layoutX="369.0" layoutY="526.0" prefHeight="33.0" prefWidth="188.0" promptText="24 Hour Time" style="-fx-background-radius: 15; -fx-background-color: #484848; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
-      <Button layoutX="193.0" layoutY="580.0" mnemonicParsing="false" onAction="#generateRepButton" prefHeight="54.0" prefWidth="274.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #484848; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Generate">
+      <Button layoutX="73.0" layoutY="580.0" mnemonicParsing="false" onAction="#generateRepButton" prefHeight="54.0" prefWidth="521.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #484848; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Generate">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
+      <Text fill="WHITE" layoutX="66.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REVENUE" textAlignment="CENTER" wrappingWidth="228.296875">
+         <font>
+            <Font name="Segoe UI" size="25.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="344.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COSTS" textAlignment="CENTER" wrappingWidth="180.296875">
+         <font>
+            <Font name="Segoe UI" size="25.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="857.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROFIT" textAlignment="CENTER" wrappingWidth="228.296875">
+         <font>
+            <Font name="Segoe UI" size="25.0" />
+         </font>
+      </Text>
+      <Button layoutX="634.0" layoutY="386.0" mnemonicParsing="false" prefHeight="168.0" prefWidth="503.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3d3d3d; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
+      <Text fill="WHITE" layoutX="767.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOTE" textAlignment="CENTER" wrappingWidth="247.0">
+         <font>
+            <Font name="Segoe UI" size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="costsBox" layoutX="72.0" layoutY="519.0" prefHeight="37.0" prefWidth="521.0" promptText="10000" />
+      <Text fill="WHITE" layoutX="666.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We did not have enough time to make the &quot;admin&quot; panel look nice. Sorry!" textAlignment="CENTER" wrappingWidth="448.0">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="552.0" layoutY="212.0" mnemonicParsing="false" prefHeight="152.0" prefWidth="228.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #3d3d3d; -fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" />
+      <Text fill="WHITE" layoutX="552.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AVERAGE TRIP" textAlignment="CENTER" wrappingWidth="228.296875">
+         <font>
+            <Font name="Segoe UI" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="avgTrip" fill="WHITE" layoutX="610.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER">
+         <font>
+            <Font name="Segoe UI" size="47.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

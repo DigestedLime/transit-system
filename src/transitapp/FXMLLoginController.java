@@ -81,7 +81,7 @@ public class FXMLLoginController extends ControllerParent implements Initializab
 		if (email.getText().equals(ADMIN_EMAIL) && password.getText().equals(ADMIN_PASSWORD))  {
 			FXMLLoader loader = changeScene(event, "FXMLAdmin.FXML");
 			FXMLAdminController admin = loader.getController();
-
+			admin.setData(this.users);
 		} else {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDashboard.FXML"));
 			Parent dashParent = loader.load();
