@@ -1,5 +1,7 @@
 package user;
 
+import java.util.ArrayList;
+
 import routenetwork.Journey;
 
 /**
@@ -14,7 +16,7 @@ public class TravelCard {
 	private boolean cannotPay;
 	private boolean suspended;
 	private int id;
-	private Journey currentJourney;
+	private ArrayList<Journey> journeys;
 	
 	/* A static variable makes sure the ID is always unique by incrementing it whenever a new id
 	 * is made
@@ -29,7 +31,7 @@ public class TravelCard {
 		// Increment UNIQUE_ID to ensure the current id is not used again
 		UNIQUE_ID++;
 		
-		this.setCurrentJourney(null);
+		this.journeys = new ArrayList<>();
 		this.balance = 19;
 		this.cannotPay = false;
 		this.suspended = false;
@@ -46,6 +48,7 @@ public class TravelCard {
 		this.id = id;
 		this.balance = balance;
 		this.suspended = suspended;
+		this.journeys = new ArrayList<>();
 		//Automatically determines if one cannot pay something new
 		if (this.balance < 0) {
 			this.cannotPay = true;
@@ -120,6 +123,8 @@ public class TravelCard {
 	 */
 	public boolean pay(float amount) {
 		if (this.cannotPay || this.suspended) {
+			System.out.println("Suspended: " + this.suspended);
+			System.out.println("Cannot Pay: " + this.cannotPay);
 			return false;
 		} 
 		this.balance -= amount;
@@ -134,16 +139,33 @@ public class TravelCard {
 	 * @return return the journey the card is currently doing
 	 */
 	public Journey getCurrentJourney() {
-		return currentJourney;
+		if (this.journeys.isEmpty()) {
+			return null;
+		}
+		return this.journeys.get(this.journeys.size() - 1);
 	}
-
-	/**
-	 * @param currentJourney set the currentJourney to this
+  
+  /** Adds journey to the journeys ArrayList.
+	 * @param journey
 	 */
-	public void setCurrentJourney(Journey currentJourney) {
-		this.currentJourney = currentJourney;
+	public void addJourney(Journey journey) {
+		this.journeys.add(journey);
+
 	}
 	
+	public Journey getPrevJourney() {
+		if (this.journeys.size() > 1) {
+			return this.journeys.get(this.journeys.size() - 2);
+		}
+		return null;
+	}
 	
+	public boolean cannotPay() {
+		return this.cannotPay;
+	}
+	
+	public String toString() {
+		return ((Integer)this.id).toString();
+	}
 	
 }
