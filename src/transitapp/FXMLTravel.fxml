@@ -16,17 +16,17 @@
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="status" layoutX="51.0" layoutY="674.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="809.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #777; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 25, 0, 0, 0);" text="Status: Insufficient Funds." textFill="#808080">
+      <Button fx:id="status" layoutX="51.0" layoutY="674.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="809.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #777; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 25, 0, 0, 0);" text="Status: No data to display." textFill="#808080">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="515.0" layoutY="580.0" mnemonicParsing="false" onAction="#startJourney" prefHeight="64.0" prefWidth="619.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Start Journey">
+      <Button layoutX="419.0" layoutY="580.0" mnemonicParsing="false" onAction="#journeyPush" prefHeight="64.0" prefWidth="210.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Tap On">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <TextField fx:id="cardID" layoutX="51.0" layoutY="578.0" prefHeight="64.0" prefWidth="435.0" promptText="Enter Card ID" style="-fx-background-color: #3d3d3d; -fx-background-radius: 20; -fx-border-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0); -fx-text-fill: white;">
+      <TextField fx:id="cardID" alignment="CENTER" layoutX="51.0" layoutY="580.0" prefHeight="64.0" prefWidth="343.0" promptText="Enter Card ID" style="-fx-background-color: #3d3d3d; -fx-background-radius: 20; -fx-border-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0); -fx-text-fill: white; -fx-padding: 15;">
          <font>
             <Font name="Segoe UI Semilight" size="23.0" />
          </font>
@@ -51,17 +51,27 @@
             <Font name="Segoe UI" size="21.0" />
          </font>
       </Text>
-      <ListView fx:id="currentStation" layoutX="61.0" layoutY="261.0" prefHeight="273.0" prefWidth="343.0" translateX="-10.0" translateY="-10.0" />
-      <TextField fx:id="time" layoutX="61.0" layoutY="105.0" prefHeight="37.0" prefWidth="343.0" translateX="-10.0" translateY="-10.0" />
-      <ImageView fx:id="checkmark" fitHeight="472.0" fitWidth="483.0" layoutX="562.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+      <ListView fx:id="stationList" layoutX="61.0" layoutY="261.0" prefHeight="273.0" prefWidth="343.0" translateX="-10.0" translateY="-10.0" />
+      <TextField fx:id="time" layoutX="61.0" layoutY="105.0" prefHeight="37.0" prefWidth="343.0" promptText="MM/DD/YYYY 23:00" translateX="-10.0" translateY="-10.0" />
+      <ImageView fx:id="checkmark" fitHeight="472.0" fitWidth="483.0" layoutX="562.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@check.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="error" fitHeight="472.0" fitWidth="483.0" layoutX="562.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="error" fitHeight="472.0" fitWidth="483.0" layoutX="562.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@cross.png" />
          </image>
       </ImageView>
+      <Button layoutX="890.0" layoutY="580.0" mnemonicParsing="false" onAction="#backBtnPush" prefHeight="64.0" prefWidth="247.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Back">
+         <font>
+            <Font name="Segoe UI Semilight" size="25.0" />
+         </font>
+      </Button>
+      <Button layoutX="650.0" layoutY="580.0" mnemonicParsing="false" onAction="#journeyOffPush" prefHeight="64.0" prefWidth="210.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Tap Off">
+         <font>
+            <Font name="Segoe UI Semilight" size="25.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

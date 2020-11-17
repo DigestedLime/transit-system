@@ -1,46 +1,67 @@
 package routenetwork;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 public class Journey {
 	
-	private String startStnName;
-	private String endStnName;
-	private String startTime;
-	private String endTime;
-	
-	private Station startStn;
-	private Station endStn;
 	private RouteController rcontrol;
+	private double currentFare;
 	
-	public Journey (String departingStation, String terminus, String startTime, String endTime, RouteController rcontrol) {
-		this(departingStation, terminus, rcontrol);
-		this.startTime = startTime;
-		this.endTime = endTime;
+	private boolean tripEnded;
+	
+	private Station[] route = new Station[2];
+	private LocalDateTime startTime;
+	
+	private LocalDateTime renewTime;
+
+	public Journey(RouteController rc) {
+		this.currentFare = 0.0;
+		this.tripEnded = false;
+		this.rcontrol = rc;
 	}
 	
-	public Journey (String departingStation, String terminus, RouteController rcontrol) {
-		this.startStnName = departingStation;
-		this.endStnName = terminus;
-		this.rcontrol = rcontrol;
-		this.findStations();
-	}
-	
-	private void findStations() {
-		for (Station trainStation: rcontrol.getTrainRoute()) {
-			if (trainStation.getName() == startStnName) {
-				startStn = trainStation;
+	public boolean tapOn(Station station, LocalDateTime currentTime) {
+		if (!this.isTripEnded()) {			
+			this.setStartTime(currentTime);
+			this.setRenewTime(currentTime);
+			this.route[0] = station;
+			if (station.getFareType() == "BUS") {
+				this.currentFare += 2.0;
+				this.tripEnded = true;
 			}
-			if (trainStation.getName() == endStnName) {
-				endStn = trainStation;
-			}
-			for (Station busStation: trainStation.getLinkedStations()) {
-				if (busStation.getName() == startStnName) {
-					startStn = busStation;
-				}
-				if (busStation.getName() == endStnName) {
-					endStn = busStation;
-				}
-			}
+			return true;
 		}
+		return false;
+	}
+
+	public boolean tapOff(Station station, LocalDateTime currentTime) {
+		if (!this.isTripEnded()) {
+			this.tripEnded = true;
+			this.route[1] = station;
+			long durationMinutes = ChronoUnit.MINUTES.between(this.getStartTime(), currentTime);
+			this.currentFare += this.calculateFare();
+			if (this.currentFare > 6.0) {
+				this.currentFare = 6.0;
+				if (durationMinutes > 120) {
+					if (route[1].getFareType() != route[0].getFareType()) {
+						this.currentFare += 2.0; //We assume you spend 2 hours on the train.
+					} else if (route[1].getFareType() == "BUS") { //they're both bus
+						this.currentFare += 4.0; //We assume you spend 2 hours on the train.
+					}
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	public double tripFare () {
+		return this.currentFare;
+	}
+	
+	public boolean isTripEnded() {
+		return this.tripEnded;
 	}
 
 	public double calculateFare() {
@@ -50,8 +71,12 @@ public class Journey {
 		 * TRAIN -> BUS
 		 */
 		
+		Station startStn = this.route[0];
+		Station endStn = this.route[1];
+		RouteController rcontrol = this.rcontrol;
+		
 		double fare = 0;
-		if (startStn instanceof BusStation && endStn instanceof BusStation) {
+		if (startStn.getFareType() == "BUS" && endStn.getFareType() == "BUS") {
 			int minDistance = (int) 1e9;
 			for (Station firstStation: startStn.getLinkedStations()) {
 				for (Station secondStation: endStn.getLinkedStations()) {
@@ -62,7 +87,7 @@ public class Journey {
 				}
 			}
 			fare = (double) 2 + (0.5* minDistance) + 2;
-		} else if (startStn instanceof BusStation && endStn instanceof TrainStation) {
+		} else if (startStn.getFareType() == "BUS" && endStn.getFareType() == "TRAIN") {
 			int minDistance = (int) 1e9;
 			for (Station station: startStn.getLinkedStations()) {
 				int distance = rcontrol.stationDistance((TrainStation) station, (TrainStation) endStn);
@@ -71,7 +96,7 @@ public class Journey {
 				}
 			}
 			fare = (double) (0.5* minDistance) + 2;
-		} else if (startStn instanceof TrainStation && endStn instanceof BusStation) {
+		} else if (startStn.getFareType() == "TRAIN" && endStn.getFareType() == "BUS") {
 			int minDistance = (int) 1e9;
 			for (Station station: endStn.getLinkedStations()) {
 				int distance = rcontrol.stationDistance((TrainStation) station, (TrainStation) startStn);
@@ -82,13 +107,41 @@ public class Journey {
 			fare = (double) (0.5* minDistance) + 2;
 		} else {
 			//Both are Train
-			fare = (double) (0.5*(rcontrol.stationDistance((TrainStation) startStn, (TrainStation)endStn)));
+//			System.out.println(rcontrol);
+//			System.out.println(startStn);
+//			System.out.println(endStn);
+			fare = (double) (0.5*(rcontrol.stationDistance((TrainStation) startStn, (TrainStation) endStn)));
 		}
 		
 		if (fare > 6) {
 			return 6.0;
 		}
 		return fare;
+		
+	}
+
+	public LocalDateTime getStartTime() {
+		return startTime;
+	}
+	
+	private void setStartTime(LocalDateTime currentTime) {
+		this.startTime = currentTime;
+	}
+
+	public void setCurrentFare(double fare) {
+		this.currentFare = fare;
+	}
+
+	public LocalDateTime getRenewTime() {
+		return renewTime;
+	}
+
+	public void setRenewTime(LocalDateTime renewTime) {
+		this.renewTime = renewTime;
+	}
+	
+	public String toString() {
+		return ((Double)this.currentFare).toString();
 		
 	}
 }

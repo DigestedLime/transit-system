@@ -1,9 +1,29 @@
-4 f 15.0
-22 f 19.0
-3 Rehmat The Munir password test 3
-5 f 10.0
+# FORMAT: First line after this comment represents the current counter for TravelCard.UNIQUE_ID so that id numbers stay unique. The format after is for a user: <number of words in name> <name> <password> <email> <number of cards of user> For each card of the user, there is then a line after the user line in format of <unique_id> <"t" if suspended, "f" otherwise"> <card balance>. After all cards of one user are shown, the next line is the next user
+107
+2 Rehmat Munir asd asd@asd 6
+51 t 19.0
+57 f 158.0
+59 t 49.0
+87 f 19.0
+90 f 19.0
+92 f 19.0
+Bro -> No: 3.5
+Bud -> Sud: 4.5
+x -> y: 5
+z -> a: 3
+a -> x: 3
+3 Rehmat The Munir password test 2 0
 6 f 15.0
 7 f 15.0
-1 Aaron pass admin@dawgy.pw 2
-22 f 123.0
-23 f 181.0
+2 Aaron Hong pass me@aaron.pm 4 0
+69 t 29.0
+70 t 19.0
+71 t 19.0
+73 t 19.0
+3 kill me now password iwanttodie@gmail.com 4 0
+79 f 159.0
+80 f 19.0
+81 t 19.0
+82 t 19.0
+1 name pass email 1 0
+112 f 19.0

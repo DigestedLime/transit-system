@@ -3,19 +3,11 @@ package transitapp;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.collections.*;
-import javafx.scene.*;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.stage.*;
 import user.CustomerUser;
 
 /**
@@ -23,19 +15,18 @@ import user.CustomerUser;
  * button event that happens would cause change the scene to login, settings or
  * register.
  * 
- * @author Lap Khang Tran
+ * @author
  *
  */
 public class FXMLMenuController extends ControllerParent implements Initializable {
 	private ArrayList<CustomerUser> users;
 	
-	
+	/**
+	 * @param users passes the list of all CustomerUsers in the system to this controller
+	 */
 	public void setData(ArrayList<CustomerUser> users) {
 		this.users = users;
-		
 	}
-	
-	
 	
 	/**
 	 * This method changes the scene to the login screen.
@@ -44,11 +35,9 @@ public class FXMLMenuController extends ControllerParent implements Initializabl
 	 * @throws IOException
 	 */
 	public void loginButtonPush(ActionEvent event) throws IOException {
-		
 		FXMLLoader loader = changeScene(event, "FXMLLogin.FXML");
 		FXMLLoginController temp = loader.getController();
 		temp.setData(this.users);
-		
 	}
 
 	/**
@@ -58,8 +47,9 @@ public class FXMLMenuController extends ControllerParent implements Initializabl
 	 * @throws IOException
 	 */
 	public void settingsButtonPush(ActionEvent event) throws IOException {
-
-		changeScene(event, "FXMLSettings.FXML");
+		FXMLLoader loader = changeScene(event, "FXMLSettings.FXML");
+		FXMLSettingsController settings = loader.getController();
+		settings.setData(this.users);
 	}
 
 	/**
@@ -73,7 +63,14 @@ public class FXMLMenuController extends ControllerParent implements Initializabl
 		FXMLRegisterController temp = loader.getController();
 		temp.setData(this.users);
 	}
-
+	
+	public void travelButtonPush(ActionEvent event) throws IOException {
+		FXMLLoader loader = changeScene(event, "FXMLTravel.FXML");
+		FXMLTravelController temp = loader.getController();
+		temp.setData(this.users);
+	}
+	
+	
 	/**
 	 * Method that needs to be in the class from implementing Initializable.
 	 */
