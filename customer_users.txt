@@ -1,5 +1,5 @@
 # FORMAT: First line after this comment represents the current counter for TravelCard.UNIQUE_ID so that id numbers stay unique. The format after is for a user: <number of words in name> <name> <password> <email> <number of cards of user> <number of recent trips>. For each card of the user, there is then a line after the user line in format of <unique_id> <"t" if suspended, "f" otherwise"> <card balance>. After all cards of one user are shown, the next line is the first trip, which is in the same format as recent trips in CustomerUser. After all trips are displayed, the next line is the next user, assuming there is one.
-126
+135
 2 Rehmat Munir asd asd@asd 8 5
 51 t 10399.0
 57 t 159.0
@@ -31,3 +31,12 @@ a -> x: 3
 112 f 19.0
 1 a a a 1 0
 119 f 19.0
+1 akira akira akira@akira.com 1 0
+127 f 259.0
+1 bob bob bob@bob.com 2 0
+129 f 99.0
+130 f 29.0
+1 poo poo poo@poo 2 1
+132 f 99.0
+133 f 19.0
+[132] Kipling -> Royal York: 1.0

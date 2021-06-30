@@ -80,6 +80,9 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 				cardList.getSelectionModel().select("" + this.currentCard.getID());
 				this.update();
 			}
+			if (this.currentUser.getTrips() != null) {
+				recentTripsList.setItems(FXCollections.observableArrayList(this.currentUser.getTrips()));
+			}
 		}
 	}
 
@@ -272,9 +275,7 @@ public class FXMLDashboardController extends ControllerParent implements Initial
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		if (this.currentUser.getTrips() != null) {
-			recentTripsList.setItems(FXCollections.observableArrayList(this.currentUser.getTrips()));
-		}
+		
 
 	}
 

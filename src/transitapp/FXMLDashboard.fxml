@@ -53,7 +53,7 @@
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="51.0" layoutY="580.0" mnemonicParsing="false" onAction="#addCard" prefHeight="64.0" prefWidth="330.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Add New Card">
+      <Button layoutX="51.0" layoutY="580.0" mnemonicParsing="false" onAction="#addCardPush" prefHeight="64.0" prefWidth="330.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Add New Card">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
@@ -78,8 +78,8 @@
             <Font name="Segoe UI Semilight" size="26.0" />
          </font>
       </Button>
-      <ListView fx:id="cardList" layoutX="51.0" layoutY="266.0" prefHeight="168.0" prefWidth="330.0" />
-      <Button layoutX="51.0" layoutY="484.0" mnemonicParsing="false" onAction="#deactivateCardPush" prefHeight="64.0" prefWidth="156.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Deactivate">
+      <ListView fx:id="cardList" layoutX="51.0" layoutY="266.0" onKeyReleased="#update" onMouseClicked="#update" prefHeight="168.0" prefWidth="330.0" />
+      <Button fx:id="toggleActivate" layoutX="51.0" layoutY="484.0" mnemonicParsing="false" onAction="#toggleSuspension" prefHeight="64.0" prefWidth="156.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-text-fill: #fff; -fx-background-color: #3d3d3d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 25, 0, 0, 0);" text="Deactivate">
          <font>
             <Font name="Segoe UI Semilight" size="25.0" />
          </font>
@@ -105,7 +105,7 @@
             <Font name="Segoe UI" size="21.0" />
          </font>
       </Text>
-      <Text fx:id="balance" fill="WHITE" layoutX="429.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER" wrappingWidth="330.0">
+      <Text fx:id="cardBalance" fill="WHITE" layoutX="429.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$0.00" textAlignment="CENTER" wrappingWidth="330.0">
          <font>
             <Font name="Segoe UI" size="47.0" />
          </font>

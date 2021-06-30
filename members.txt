@@ -1,5 +1,0 @@
-utorid   githubID      name
-takakiak DigestedLime  Akira Takaki
-munirreh rehmat10      Rehmat Munir
-tranlap  KennyChiWa-Wa Lap Khang Tran
-hongaar2 uoft-ahong    Aaron Hong
