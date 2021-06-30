@@ -5,10 +5,11 @@
 ```
 ├── src
 |   ├── backendapi 		# Contains the map entity, and the API for the map.
-|   ├── routenetwork	# Contains the station entities, and journey entities, and  |   |					  the controller for the stations and journeys.
+|   ├── routenetwork	# Contains the station entities, and journey entities, and  
+|   |                   the controller for the stations and journeys.
 |   ├── transitapp		# Contains the FXML files, and the views for our 
-|   |					  application.
-|   └── user			# Contains the user entities and the travel card entities.
+|   |                   application.
+|   └── user			    # Contains the user entities and the travel card entities.
 └── customer_users.txt 	# The database for our users.
 ```
 
